@@ -349,7 +349,7 @@ function handleFormSubmit(event) {
     body: formData,
     headers: { 'Accept': 'application/json' }
   })
-  .then(function(){ fbq('track', 'Lead'); alert('Merci ! Vous serez contacté sous 24h.'); })
+  .then(function(){ fbq('track', 'Prospect'); alert('Merci ! Vous serez contacté sous 24h.'); })
   .catch(function(){ alert('Merci ! Vous serez contacté sous 24h.'); });
   return false;
 }
