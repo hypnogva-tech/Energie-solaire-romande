@@ -56,30 +56,7 @@ src="https://www.facebook.com/tr?id=1501526864789476&ev=PageView&noscript=1"
   <div class="label">Ils ont franchi le pas</div>
   <h1>Ce que disent<br>nos <em>clients</em></h1>
   <p class="sub">Des propriétaires de Suisse romande qui ont fait installer leurs panneaux solaires. Leurs retours en vidéo.</p>
-  <div class="stars">
-    <span>★★★★★</span>
-    4,8 · 302 avis Google
-  </div>
 </div>
-
-<div class="videos">
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/uiHX9R9GBRU" allowfullscreen></iframe>
-  </div>
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/wc2fglwjE04" allowfullscreen></iframe>
-  </div>
-  <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/Nmfw4iR9Inw" allowfullscreen></iframe>
-  </div>
-</div>
-
-<div class="cta">
-  <h2>Prêt à passer<br>au solaire ?</h2>
-  <p>Estimation gratuite · Réponse sous 24h · Sans engagement</p>
-  <a href="index.html">Obtenir mon estimation gratuite →</a>
-</div>
-
 
 <div style="padding:40px 24px 60px; max-width:600px; margin:0 auto;">
   <div style="text-align:center; margin-bottom:28px;">
@@ -93,28 +70,28 @@ src="https://www.facebook.com/tr?id=1501526864789476&ev=PageView&noscript=1"
     </a>
   </div>
 
-  <div style="overflow:hidden; position:relative;">
-    <div id="reviewTrack" style="display:flex; gap:16px; transition:transform 0.4s ease;">
+  <div style="overflow:hidden; position:relative; width:100%;">
+    <div id="reviewTrack" style="display:flex; gap:16px; transition:transform 0.4s ease; will-change:transform;">
 
-      <div style="min-width:280px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0;">
+      <div style="min-width:calc(100% - 0px); width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0; box-sizing:border-box;">
         <div style="color:#C8922A; font-size:1rem; margin-bottom:10px;">★★★★★</div>
         <p style="font-size:.82rem; color:rgba(255,255,255,.7); line-height:1.6; margin-bottom:14px;">"Excellente expérience client. Merci à Rayan ZGHAB pour son accompagnement. De la visite technique à la concrétisation de notre projet, tout était parfait !"</p>
         <div style="font-size:.75rem; font-weight:600; color:rgba(255,255,255,.4);">Emma C. · il y a 3 mois</div>
       </div>
 
-      <div style="min-width:280px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0;">
+      <div style="min-width:calc(100% - 0px); width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0; box-sizing:border-box;">
         <div style="color:#C8922A; font-size:1rem; margin-bottom:10px;">★★★★★</div>
         <p style="font-size:.82rem; color:rgba(255,255,255,.7); line-height:1.6; margin-bottom:14px;">"La Maison des Énergies s'occupe vraiment de tout du début à la fin. Très performant et arrangeant. Je ne peux que les recommander !"</p>
         <div style="font-size:.75rem; font-weight:600; color:rgba(255,255,255,.4);">Monique T. · il y a 4 mois</div>
       </div>
 
-      <div style="min-width:280px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0;">
+      <div style="min-width:calc(100% - 0px); width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0; box-sizing:border-box;">
         <div style="color:#C8922A; font-size:1rem; margin-bottom:10px;">★★★★★</div>
         <p style="font-size:.82rem; color:rgba(255,255,255,.7); line-height:1.6; margin-bottom:14px;">"Tout le travail a été fait proprement et avec respect. Merci à toute l'équipe pour les explications, la pose et le raccordement. Je recommande fortement."</p>
         <div style="font-size:.75rem; font-weight:600; color:rgba(255,255,255,.4);">José F. · il y a un an</div>
       </div>
 
-      <div style="min-width:280px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0;">
+      <div style="min-width:calc(100% - 0px); width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:20px; flex-shrink:0; box-sizing:border-box;">
         <div style="color:#C8922A; font-size:1rem; margin-bottom:10px;">★★★★★</div>
         <p style="font-size:.82rem; color:rgba(255,255,255,.7); line-height:1.6; margin-bottom:14px;">"De A à Z, tout était parfait. Conseils patients, pose professionnelle, raccordement le lendemain. Pour moi c'est un 10 sur 10. Bravo !"</p>
         <div style="font-size:.75rem; font-weight:600; color:rgba(255,255,255,.4);">Rose-Marie C. · il y a 7 mois</div>
@@ -138,10 +115,31 @@ var current = 0;
 var total = 4;
 function moveCarousel(dir) {
   current = (current + dir + total) % total;
-  document.getElementById('reviewTrack').style.transform = 'translateX(-' + (current * 296) + 'px)';
+  var track = document.getElementById('reviewTrack');
+  var cardWidth = track.parentElement.offsetWidth + 16;
+  track.style.transform = 'translateX(-' + (current * cardWidth) + 'px)';
 }
 setInterval(function(){ moveCarousel(1); }, 4000);
 </script>
+<div class="videos">
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/uiHX9R9GBRU" allowfullscreen></iframe>
+  </div>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/wc2fglwjE04" allowfullscreen></iframe>
+  </div>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/Nmfw4iR9Inw" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="cta">
+  <h2>Prêt à passer<br>au solaire ?</h2>
+  <p>Estimation gratuite · Réponse sous 24h · Sans engagement</p>
+  <a href="index.html">Obtenir mon estimation gratuite →</a>
+</div>
+
+
 <footer>
   La Maison des Énergies SA · Suisse Romande
 </footer>
