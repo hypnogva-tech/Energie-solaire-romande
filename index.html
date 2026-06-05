@@ -352,13 +352,15 @@ function handleFormSubmit(event) {
     }
   }
   var formData = new FormData(form);
+  fbq('track', 'Lead');
   fetch('https://hooks.zapier.com/hooks/catch/18792693/4bc4xc7/', {
     method: 'POST',
     body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(function(){ fbq('track', 'Lead'); alert('Merci ! Vous serez contacté sous 24h.'); })
-  .catch(function(){ alert('Merci ! Vous serez contacté sous 24h.'); });
+    mode: 'no-cors'
+  });
+  setTimeout(function() {
+    window.location.href = 'merci.html';
+  }, 500);;
   return false;
 }
 </script>
