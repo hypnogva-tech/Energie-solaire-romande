@@ -25,18 +25,18 @@ nav{padding:13px 24px;display:flex;justify-content:space-between;align-items:cen
 
 /* ── HERO ── */
 .hero{display:flex;flex-direction:column}
-.hero-img-strip{width:100%;height:230px;overflow:hidden;display:block}
+.hero-img-strip{width:100%;height:160px;overflow:hidden;display:block}
 .hero-img-strip img{width:100%;height:100%;object-fit:cover;object-position:center 70%;display:block}
 
 /* text panel — fond blanc, collé sous la photo, 0 espace gris */
-.hero-left{background:#fff;padding:28px 20px 28px;display:flex;flex-direction:column;gap:16px;margin:0;align-items:center;text-align:center}
+.hero-left{background:#fff;padding:24px 20px 24px;display:flex;flex-direction:column;gap:14px;margin:0;align-items:center}
 .pill{display:inline-flex;align-items:center;gap:6px;background:rgba(232,160,32,.14);border:1px solid rgba(232,160,32,.45);color:var(--gold);font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px}
 .dot-a{width:6px;height:6px;background:var(--gold2);border-radius:50%;animation:blink 1.3s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 h1{font-size:clamp(1.7rem,5.5vw,2.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#1A1208;text-align:center}
 h1 em{font-style:normal;color:var(--gold2)}
-.hero-bullets{display:flex;flex-direction:column;gap:9px;width:100%;max-width:420px}
-.hb{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:#1A1208;line-height:1.45}
+.hero-bullets{display:flex;flex-direction:column;gap:9px;width:100%;max-width:440px;text-align:left}
+.hb{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:#1A1208;line-height:1.45;text-align:left}
 .hb-check{width:20px;height:20px;background:linear-gradient(135deg,var(--gold-dark),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .hb-check svg{width:10px;height:10px}
 .hb strong{font-weight:700}
@@ -77,7 +77,7 @@ h1 em{font-style:normal;color:var(--gold2)}
 .opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px 10px 14px;background:#fff;border:1.5px solid var(--border);border-radius:16px;cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;text-align:center}
 .opt:hover{border-color:var(--gold);background:#FEF8EE}
 .opt.sel{border-color:var(--gold);background:#FEF3DA}
-.opt-svg{width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.opt-svg{width:64px;height:64px;display:flex;align-items:center;justify-content:center}
 .opt-lbl{font-size:.74rem;font-weight:700;color:#1A1208;line-height:1.3}
 .opt.sel .opt-lbl{color:var(--gold-dark)}
 .opt-sub{font-size:.62rem;color:var(--muted);margin-top:2px}
@@ -123,7 +123,7 @@ input::placeholder{color:rgba(26,18,8,.28)}
 
 /* ── SOLAR PHOTO STRIP ── */
 .solar-strip{position:relative;height:200px;overflow:hidden;background:#1a1208}
-.ss-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.ss-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom}
 .ss-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(12,10,7,.88) 0%,rgba(12,10,7,.3) 70%,transparent 100%);z-index:1}
 .ss-txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 24px;max-width:320px;z-index:2}
 .ss-txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 24px;max-width:320px}
@@ -189,7 +189,7 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg/1280px-Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg"
       alt="Panneaux solaires sur toiture"
       loading="eager"
-      style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block"
+      style="width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block"
     >
   </div>
   <!-- Texte + stats -->
@@ -235,7 +235,7 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
           <div class="opt" onclick="pick(this,1,'proprio','oui')">
             <div class="opt-svg">
               <!-- maison SVG -->
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="56" height="56" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="40" height="40" rx="10" fill="#FEF3DA"/>
                 <path d="M20 9L8 19h3v11h7v-7h4v7h7V19h3L20 9z" fill="none" stroke="#C8922A" stroke-width="1.8" stroke-linejoin="round"/>
                 <circle cx="20" cy="22" r="2" fill="#C8922A"/>
@@ -247,7 +247,7 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
           <div class="opt" onclick="notOwner()">
             <div class="opt-svg">
               <!-- cadenas SVG -->
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="56" height="56" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="40" height="40" rx="10" fill="#F2F0EC"/>
                 <rect x="13" y="21" width="14" height="10" rx="2" fill="none" stroke="#9A8A78" stroke-width="1.8"/>
                 <path d="M15 21v-4a5 5 0 0110 0v4" fill="none" stroke="#9A8A78" stroke-width="1.8" stroke-linecap="round"/>
