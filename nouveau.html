@@ -25,17 +25,17 @@ nav{padding:13px 24px;display:flex;justify-content:space-between;align-items:cen
 
 /* ── HERO ── */
 .hero{display:flex;flex-direction:column}
-.hero-img-strip{width:100%;height:200px;overflow:hidden;display:block}
-.hero-img-strip img{width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block}
+.hero-img-strip{width:100%;height:230px;overflow:hidden;display:block}
+.hero-img-strip img{width:100%;height:100%;object-fit:cover;object-position:center 70%;display:block}
 
 /* text panel — fond blanc, collé sous la photo, 0 espace gris */
-.hero-left{background:#fff;padding:24px 20px 28px;display:flex;flex-direction:column;gap:18px;margin:0}
-.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(232,160,32,.14);border:1px solid rgba(232,160,32,.45);color:var(--gold);font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;width:fit-content}
+.hero-left{background:#fff;padding:28px 20px 28px;display:flex;flex-direction:column;gap:16px;margin:0;align-items:center;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(232,160,32,.14);border:1px solid rgba(232,160,32,.45);color:var(--gold);font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px}
 .dot-a{width:6px;height:6px;background:var(--gold2);border-radius:50%;animation:blink 1.3s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-h1{font-size:clamp(1.7rem,5.5vw,2.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#1A1208}
+h1{font-size:clamp(1.7rem,5.5vw,2.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#1A1208;text-align:center}
 h1 em{font-style:normal;color:var(--gold2)}
-.hero-bullets{display:flex;flex-direction:column;gap:9px}
+.hero-bullets{display:flex;flex-direction:column;gap:9px;width:100%;max-width:420px}
 .hb{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:#1A1208;line-height:1.45}
 .hb-check{width:20px;height:20px;background:linear-gradient(135deg,var(--gold-dark),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .hb-check svg{width:10px;height:10px}
@@ -48,7 +48,7 @@ h1 em{font-style:normal;color:var(--gold2)}
 .hs-n{font-size:1.15rem;font-weight:800;color:var(--gold);line-height:1}
 .hs-l{font-size:.55rem;color:var(--muted);line-height:1.3;text-align:center}
 .badges-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
-.hero-tagline{font-size:.95rem;color:var(--muted);font-weight:600;margin-top:-10px;margin-bottom:2px}
+.hero-tagline{font-size:.92rem;color:var(--muted);font-weight:600;margin-top:-10px;margin-bottom:2px;text-align:center}
 .hs-badge{font-size:.62rem;color:var(--muted);background:var(--off);border:1px solid var(--border);border-radius:20px;padding:5px 11px;white-space:nowrap;font-weight:600}
 
 /* ── FORM PANEL ── */
@@ -184,12 +184,12 @@ footer a{color:rgba(255,255,255,.32);text-decoration:none}
 <!-- HERO -->
 <div class="hero">
   <!-- Photo panneaux compacte -->
-  <div class="hero-img-strip">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/VFPt_Solaranlage_Hannover_-_Schwarze_Heide_1_edit.jpg/1280px-VFPt_Solaranlage_Hannover_-_Schwarze_Heide_1_edit.jpg"
-      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80'"
+  <div class="hero-img-strip" id="heroImgStrip">
+    <img id="heroImg"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg/1280px-Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg"
       alt="Panneaux solaires sur toiture"
       loading="eager"
+      style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block"
     >
   </div>
   <!-- Texte + stats -->
@@ -548,25 +548,26 @@ function handleSubmit(e){
   return false;
 }
 
-/* CAROUSEL */
-var slide=0,total=6,autoT;
-var track=document.getElementById('ct');
-var outer=document.getElementById('co');
-var dotsEl=document.getElementById('dots');
-for(var i=0;i<total;i++){
-  var d=document.createElement('div');d.className='dot-i';d.setAttribute('data-i',i);
-  d.onclick=(function(idx){return function(){toSlide(idx)};})(i);
-  dotsEl.appendChild(d);
-}
-function updDots(){dotsEl.querySelectorAll('.dot-i').forEach(function(d,i){d.classList.toggle('on',i===slide);d.style.width=i===slide?'20px':'6px';});}
-function toSlide(n){slide=(n+total)%total;var w=outer.offsetWidth+10;track.style.transform='translateX(-'+(slide*w)+'px)';updDots();resetAuto();}
-function mv(dir){toSlide(slide+dir);}
-function resetAuto(){clearInterval(autoT);autoT=setInterval(function(){mv(1);},4500);}
-updDots();resetAuto();
-var tx=0;
-track.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
-track.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)mv(dx<0?1:-1);},{passive:true});
-window.addEventListener('resize',function(){var w=outer.offsetWidth+10;track.style.transition='none';track.style.transform='translateX(-'+(slide*w)+'px)';setTimeout(function(){track.style.transition='transform .4s ease';},50);});
+/* carousel removed */
+
+/* SOLAR IMAGE FALLBACKS */
+(function(){
+  var sources = [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg/1280px-Photovoltaik_Dachanlage_Hannover_-_Schwarze_Heide_-_1_MW.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Solar_panels_on_a_roof.jpg/1280px-Solar_panels_on_a_roof.jpg',
+    'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80',
+    'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=900&q=80'
+  ];
+  var img = document.getElementById('heroImg');
+  var strip = document.getElementById('heroImgStrip');
+  if(!img) return;
+  var idx = 0;
+  img.onerror = function(){
+    idx++;
+    if(idx < sources.length){ img.src = sources[idx]; }
+    else { strip.style.display='none'; }
+  };
+})();
 </script>
 </body>
 </html>
