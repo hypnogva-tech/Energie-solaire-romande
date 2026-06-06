@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panneaux Solaires Suisse Romande — Estimation Gratuite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1501526864789476');fbq('track','PageView');</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1646836646368027');fbq('track','PageView');</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#C8922A;--gold2:#E8A020;--gold-dark:#7A5010;--dark:#0C0A07;--muted:#8A7560;--off:#F7F4EF;--border:#E8E0D4}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',sans-serif;background:#fff;color:#1A1208;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{padding:13px 24px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.logo{font-size:.9rem;font-weight:800;color:#1A1208}
+.logo span{color:var(--gold2)}
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-stars{font-size:.65rem;color:var(--muted);display:none}
+@media(min-width:400px){.nav-stars{display:block}}
+.nav-cta{background:var(--gold2);color:#0C0A07;font-size:.72rem;font-weight:800;padding:8px 16px;border-radius:20px;text-decoration:none}
+
+/* ── HERO ── */
+.hero{display:flex;flex-direction:column}
+.hero-img-strip{width:100%;height:200px;overflow:hidden;display:block}
+.hero-img-strip img{width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block}
+
+/* text panel — fond blanc, collé sous la photo, 0 espace gris */
+.hero-left{background:#fff;padding:24px 20px 28px;display:flex;flex-direction:column;gap:18px;margin:0}
+.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(232,160,32,.14);border:1px solid rgba(232,160,32,.45);color:var(--gold);font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;width:fit-content}
+.dot-a{width:6px;height:6px;background:var(--gold2);border-radius:50%;animation:blink 1.3s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-size:clamp(1.7rem,5.5vw,2.4rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:#1A1208}
+h1 em{font-style:normal;color:var(--gold2)}
+.hero-bullets{display:flex;flex-direction:column;gap:9px}
+.hb{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:#1A1208;line-height:1.45}
+.hb-check{width:20px;height:20px;background:linear-gradient(135deg,var(--gold-dark),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.hb-check svg{width:10px;height:10px}
+.hb strong{font-weight:700}
+
+/* stats : chiffre en haut, label dessous — collés ensemble */
+.hero-stats{display:flex;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:#fff}
+.hs{flex:1;padding:14px 6px;text-align:center;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:4px}
+.hs:last-child{border-right:none}
+.hs-n{font-size:1.15rem;font-weight:800;color:var(--gold);line-height:1}
+.hs-l{font-size:.55rem;color:var(--muted);line-height:1.3;text-align:center}
+.badges-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.hero-tagline{font-size:.95rem;color:var(--muted);font-weight:600;margin-top:-10px;margin-bottom:2px}
+.hs-badge{font-size:.62rem;color:var(--muted);background:var(--off);border:1px solid var(--border);border-radius:20px;padding:5px 11px;white-space:nowrap;font-weight:600}
+
+/* ── FORM PANEL ── */
+.form-panel{background:#fff;padding:20px 20px 28px;margin:0}
+.fp-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;text-align:center;padding-top:24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:24px 20px 20px;box-shadow:0 4px 28px rgba(0,0,0,.07);position:relative;overflow:hidden;max-width:460px;margin:0 auto}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold2))}
+
+/* progress bar */
+.prog-wrap{margin-bottom:6px}
+.prog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-title{font-size:.78rem;font-weight:700;color:#1A1208}
+.prog-pct{font-size:.7rem;font-weight:700;color:var(--gold2)}
+.prog-track{height:5px;background:rgba(0,0,0,.08);border-radius:3px;margin-bottom:18px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold2));border-radius:3px;transition:width .4s ease}
+
+/* steps */
+.step{display:none}
+.step.show{display:block;animation:up .22s ease}
+@keyframes up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.step-q{font-size:.86rem;font-weight:700;color:#1A1208;margin-bottom:14px;line-height:1.4}
+
+/* opts */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.opts.col1{grid-template-columns:1fr}
+.opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px 10px 14px;background:#fff;border:1.5px solid var(--border);border-radius:16px;cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;text-align:center}
+.opt:hover{border-color:var(--gold);background:#FEF8EE}
+.opt.sel{border-color:var(--gold);background:#FEF3DA}
+.opt-svg{width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.opt-lbl{font-size:.74rem;font-weight:700;color:#1A1208;line-height:1.3}
+.opt.sel .opt-lbl{color:var(--gold-dark)}
+.opt-sub{font-size:.62rem;color:var(--muted);margin-top:2px}
+.opt.sel .opt-sub{color:rgba(122,80,16,.6)}
+
+/* row opts (step 2/3) */
+.opts.col1 .opt{flex-direction:row;justify-content:flex-start;gap:12px;padding:13px 16px;text-align:left}
+.opts.col1 .opt-svg{width:32px;height:32px;flex-shrink:0}
+.opts.col1 .opt-lbl{font-size:.8rem}
+
+/* fields */
+.field{margin-bottom:11px}
+label{display:block;font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+input[type=text],input[type=tel]{width:100%;background:var(--off);border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;color:#1A1208;font-size:.9rem;font-family:'Sora',sans-serif;transition:all .2s}
+input:focus{outline:none;border-color:var(--gold);background:#FEF8EE}
+input::placeholder{color:rgba(26,18,8,.28)}
+
+.cb{display:flex;align-items:flex-start;gap:10px;margin-bottom:13px;padding:10px 12px;background:var(--off);border-radius:10px;border:1.5px solid var(--border);cursor:pointer;transition:border-color .2s}
+.cb.on{border-color:var(--gold)}
+.chk{width:18px;height:18px;flex-shrink:0;border-radius:5px;border:1.5px solid var(--gold);background:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:background .18s}
+.chk.on{background:var(--gold)}
+.chk-t{display:none;color:#fff;font-size:10px;font-weight:800}
+.chk.on .chk-t{display:block}
+.cb-txt{font-size:.66rem;color:rgba(26,18,8,.5);line-height:1.5}
+
+.btn{width:100%;background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold2));border:none;border-radius:12px;padding:15px;color:#fff;font-size:.9rem;font-weight:800;font-family:'Sora',sans-serif;cursor:pointer;transition:transform .15s,box-shadow .15s;letter-spacing:.01em}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,146,42,.38)}
+.btn-back{background:none;border:none;color:rgba(26,18,8,.28);font-size:.67rem;cursor:pointer;display:block;text-align:center;width:100%;padding:9px;font-family:'Sora',sans-serif}
+.privacy{font-size:.6rem;color:rgba(26,18,8,.25);text-align:center;margin-top:6px;line-height:1.5}
+
+/* ── BENEFITS ── */
+.ben-section{background:#fff;padding:52px 20px}
+.ben-inner{max-width:540px;margin:0 auto}
+.sec-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:7px}
+.sec-title{font-size:1.2rem;font-weight:800;text-align:center;margin-bottom:24px;letter-spacing:-.03em;color:#1A1208;line-height:1.2}
+.ben-list{border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.ben-row{display:flex;align-items:flex-start;gap:14px;padding:18px 18px;border-bottom:1px solid var(--border)}
+.ben-row:last-child{border-bottom:none}
+.ben-ico{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,rgba(200,146,42,.1),rgba(232,160,32,.18));display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.ben-ttl{font-size:.85rem;font-weight:700;color:#1A1208;margin-bottom:3px}
+.ben-val{font-size:.7rem;color:var(--gold-dark);font-weight:700;margin-bottom:3px}
+.ben-dsc{font-size:.7rem;color:var(--muted);line-height:1.55}
+
+/* ── SOLAR PHOTO STRIP ── */
+.solar-strip{position:relative;height:200px;overflow:hidden;background:#1a1208}
+.ss-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.ss-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(12,10,7,.88) 0%,rgba(12,10,7,.3) 70%,transparent 100%);z-index:1}
+.ss-txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 24px;max-width:320px;z-index:2}
+.ss-txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 24px;max-width:320px}
+.ss-ey{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);margin-bottom:7px}
+.ss-h{font-size:1.15rem;font-weight:800;color:#fff;line-height:1.2;letter-spacing:-.02em}
+.ss-s{font-size:.73rem;color:rgba(255,255,255,.6);margin-top:7px}
+
+/* ── TESTIMONIALS ── */
+.testi-section{background:var(--dark);padding:52px 20px}
+.testi-inner{max-width:540px;margin:0 auto}
+.testi-head{text-align:center;margin-bottom:24px}
+.testi-rating{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:9px}
+.t-stars-main{color:var(--gold2);font-size:1.05rem;letter-spacing:2px}
+.t-score{font-size:.78rem;color:rgba(255,255,255,.38);font-weight:600}
+.testi-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.t-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px}
+.t-s{color:var(--gold2);font-size:.78rem;margin-bottom:11px;letter-spacing:1px}
+.t-txt{font-size:.82rem;color:rgba(255,255,255,.74);line-height:1.7;font-style:italic;margin-bottom:13px}
+.t-au{font-size:.68rem;color:rgba(255,255,255,.32);font-weight:700}
+.t-au span{color:var(--gold2)}
+
+.google-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#1A1208;font-size:.8rem;font-weight:700;padding:12px 20px;border-radius:12px;text-decoration:none;margin:20px auto 0;max-width:280px;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.video-grid{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.video-wrap{position:relative;width:100%;aspect-ratio:9/16;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+/* ── CERTIF ── */
+.certif-section{background:var(--off);padding:40px 20px}
+.certif-inner{max-width:540px;margin:0 auto}
+.certif-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.certif{background:#fff;border:1px solid var(--border);border-radius:10px;padding:7px 13px;font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:6px;font-weight:600}
+.cdot{width:7px;height:7px;background:#1A7A40;border-radius:50%;flex-shrink:0}
+
+/* ── CTA FINAL ── */
+.cta-section{background:var(--dark);padding:56px 20px}
+.cta-inner{max-width:460px;margin:0 auto;text-align:center}
+.cta-ey{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);margin-bottom:12px}
+.cta-ttl{font-size:clamp(1.6rem,5vw,2rem);font-weight:800;color:#fff;letter-spacing:-.04em;line-height:1.1;margin-bottom:10px}
+.cta-sub{font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:26px;line-height:1.6}
+.cta-btn{display:inline-block;background:linear-gradient(135deg,var(--gold-dark),var(--gold2));color:#fff;font-weight:800;font-size:.9rem;padding:15px 32px;border-radius:50px;text-decoration:none;cursor:pointer;border:none;font-family:'Sora',sans-serif;transition:transform .2s}
+.cta-btn:hover{transform:translateY(-2px)}
+
+footer{background:var(--dark);padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.06);text-align:center;font-size:.6rem;color:rgba(255,255,255,.2);line-height:1.9}
+footer a{color:rgba(255,255,255,.32);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Energie Solaire<span> Romandie</span></div>
+  <div class="nav-r">
+    <div class="nav-stars">⭐ 4,8 / 5 · 302 avis</div>
+    <a class="nav-cta" href="#form">Estimation gratuite</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <!-- Photo panneaux compacte -->
+  <div class="hero-img-strip">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/VFPt_Solaranlage_Hannover_-_Schwarze_Heide_1_edit.jpg/1280px-VFPt_Solaranlage_Hannover_-_Schwarze_Heide_1_edit.jpg"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80'"
+      alt="Panneaux solaires sur toiture"
+      loading="eager"
+    >
+  </div>
+  <!-- Texte + stats -->
+  <div class="hero-left">
+    <div>
+      <div class="pill"><div class="dot-a"></div>Subventions disponibles 2026</div>
+    </div>
+    <h1>Quelles économies allez-vous faire<br>en installant des <em>panneaux solaires</em> ?</h1>
+    <p class="hero-tagline">Demandez votre estimation offerte maintenant</p>
+    <div class="hero-bullets">
+      <div class="hb">
+        <div class="hb-check"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3 7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><strong>Réduisez vos factures</strong> grâce à l'énergie solaire — jusqu'à 70% d'économies</div>
+      </div>
+      <div class="hb">
+        <div class="hb-check"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3 7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><strong>Profitez des subventions fédérales et cantonales</strong> — on les demande pour vous</div>
+      </div>
+      <div class="hb">
+        <div class="hb-check"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3 7-7" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><strong>Installation rapide</strong> par des experts certifiés ESTI &amp; Swissolar</div>
+      </div>
+    </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-panel" id="form">
+    <div class="fp-label">☀️ Obtenez une estimation gratuite</div>
+    <form class="card" id="solarForm" onsubmit="return handleSubmit(event)">
+
+      <!-- Barre de progression style concurrent -->
+      <div class="prog-wrap">
+        <div class="prog-header">
+          <div class="prog-title" id="progTitle">Vous êtes ?</div>
+          <div class="prog-pct" id="progPct">13%</div>
+        </div>
+        <div class="prog-track"><div class="prog-fill" id="progFill" style="width:13%"></div></div>
+      </div>
+
+      <!-- STEP 1 — propriétaire / locataire avec icônes SVG -->
+      <div class="step show" id="s1">
+        <div class="opts">
+
+          <div class="opt" onclick="pick(this,1,'proprio','oui')">
+            <div class="opt-svg">
+              <!-- maison SVG -->
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="10" fill="#FEF3DA"/>
+                <path d="M20 9L8 19h3v11h7v-7h4v7h7V19h3L20 9z" fill="none" stroke="#C8922A" stroke-width="1.8" stroke-linejoin="round"/>
+                <circle cx="20" cy="22" r="2" fill="#C8922A"/>
+              </svg>
+            </div>
+            <div class="opt-lbl">PROPRIÉTAIRE</div>
+          </div>
+
+          <div class="opt" onclick="notOwner()">
+            <div class="opt-svg">
+              <!-- cadenas SVG -->
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="10" fill="#F2F0EC"/>
+                <rect x="13" y="21" width="14" height="10" rx="2" fill="none" stroke="#9A8A78" stroke-width="1.8"/>
+                <path d="M15 21v-4a5 5 0 0110 0v4" fill="none" stroke="#9A8A78" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="20" cy="26" r="1.5" fill="#9A8A78"/>
+              </svg>
+            </div>
+            <div class="opt-lbl">LOCATAIRE</div>
+            <div class="opt-sub">(non éligible)</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" id="s2">
+        <div class="step-q">Type de bien ?</div>
+        <div class="opts col1">
+          <div class="opt" onclick="pick(this,2,'type','maison')">
+            <div class="opt-svg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L2 13h3v11h6v-6h6v6h6V13h3L14 3z" fill="none" stroke="#C8922A" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <div class="opt-lbl">Maison individuelle</div>
+          </div>
+          <div class="opt" onclick="pick(this,2,'type','commercial')">
+            <div class="opt-svg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="9" width="22" height="16" rx="1.5" fill="none" stroke="#C8922A" stroke-width="1.7"/><path d="M9 9V7a5 5 0 0110 0v2" stroke="#C8922A" stroke-width="1.7" stroke-linecap="round"/><line x1="14" y1="9" x2="14" y2="25" stroke="#C8922A" stroke-width="1.3" stroke-dasharray="2 2"/></svg></div>
+            <div class="opt-lbl">Local commercial / industriel</div>
+          </div>
+          <div class="opt" onclick="pick(this,2,'type','appart')">
+            <div class="opt-svg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="5" y="5" width="18" height="20" rx="1.5" fill="none" stroke="#C8922A" stroke-width="1.7"/><line x1="5" y1="12" x2="23" y2="12" stroke="#C8922A" stroke-width="1.3"/><line x1="5" y1="18" x2="23" y2="18" stroke="#C8922A" stroke-width="1.3"/><line x1="14" y1="5" x2="14" y2="25" stroke="#C8922A" stroke-width="1.3"/></svg></div>
+            <div class="opt-lbl">Appartement / PPE</div>
+          </div>
+        </div>
+        <button type="button" class="btn-back" onclick="goTo(1)">← Retour</button>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" id="s3">
+        <div class="step-q">Quand souhaitez-vous passer au solaire ?</div>
+        <div class="opts col1">
+          <div class="opt" onclick="pick(this,3,'timing','now')">
+            <div class="opt-svg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><polygon points="14,4 17,12 26,12 19,17 21,25 14,20 7,25 9,17 2,12 11,12" fill="none" stroke="#C8922A" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <div class="opt-lbl">Le plus tôt possible</div>
+          </div>
+          <div class="opt" onclick="pick(this,3,'timing','6m')">
+            <div class="opt-svg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="18" rx="2" fill="none" stroke="#C8922A" stroke-width="1.7"/><line x1="4" y1="11" x2="24" y2="11" stroke="#C8922A" stroke-width="1.5"/><line x1="9" y1="4" x2="9" y2="8" stroke="#C8922A" stroke-width="1.7" stroke-linecap="round"/><line x1="19" y1="4" x2="19" y2="8" stroke="#C8922A" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <div class="opt-lbl">Dans les 6 mois</div>
+          </div>
+          <div class="opt" onclick="pick(this,3,'timing','info')">
+            <div class="opt-svg"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" fill="none" stroke="#C8922A" stroke-width="1.7"/><line x1="14" y1="12" x2="14" y2="20" stroke="#C8922A" stroke-width="1.8" stroke-linecap="round"/><circle cx="14" cy="9" r="1.2" fill="#C8922A"/></svg></div>
+            <div class="opt-lbl">Je me renseigne encore</div>
+          </div>
+        </div>
+        <button type="button" class="btn-back" onclick="goTo(2)">← Retour</button>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step" id="s4">
+        <div class="step-q">Recevez votre estimation :</div>
+        <div class="field"><label>Prénom</label><input type="text" id="prenom" name="prenom" placeholder="Jean-Pierre" autocomplete="given-name"></div>
+        <div class="field"><label>Nom</label><input type="text" id="nom" name="nom" placeholder="Dupont" autocomplete="family-name"></div>
+        <div class="field"><label>Téléphone</label><input type="tel" id="phone" name="phone" placeholder="+41 79 123 45 67" autocomplete="tel" oninput="fmtPhone(this)"></div>
+        <div class="cb" id="cb" onclick="toggleConsent()">
+          <div class="chk" id="chk"><span class="chk-t">✓</span></div>
+          <p class="cb-txt">J'accepte que mes données soient transmises à <strong>La Maison des Énergies SA</strong> à des fins d'estimation solaire. Conforme nLPD suisse.</p>
+        </div>
+        <button type="submit" class="btn">Recevoir mon estimation gratuite →</button>
+        <p class="privacy">🔒 Données transmises uniquement à La Maison des Énergies SA</p>
+        <button type="button" class="btn-back" onclick="goTo(3)">← Retour</button>
+      </div>
+
+    </form>
+  </div>
+
+    <div class="hero-stats">
+      <div class="hs">
+        <div class="hs-n">4 300+</div>
+        <div class="hs-l">Installations réalisées</div>
+      </div>
+      <div class="hs">
+        <div class="hs-n">4,8 / 5</div>
+        <div class="hs-l">302 avis Google</div>
+      </div>
+      <div class="hs">
+        <div class="hs-n">-70%</div>
+        <div class="hs-l">Sur votre facture</div>
+      </div>
+      <div class="hs">
+        <div class="hs-n">30 ans</div>
+        <div class="hs-l">Garantie incluse</div>
+      </div>
+    </div>
+    <div class="badges-row">
+      <div class="hs-badge">🏅 Affilié Swissolar</div>
+      <div class="hs-badge">⚡ Certifié ESTI</div>
+      <div class="hs-badge">⭐ 4,8 / 5 · 302 avis Google</div>
+      <div class="hs-badge">🛡️ Garantie 30 ans</div>
+      <div class="hs-badge">✅ Sans engagement</div>
+    </div>
+  </div>
+
+</div><!-- /hero -->
+
+<!-- BENEFITS -->
+<div class="ben-section">
+  <div class="ben-inner">
+    <div class="sec-label">Vos avantages concrets</div>
+    <div class="sec-title">Ce que vous gagnez réellement</div>
+    <div class="ben-list">
+      <div class="ben-row">
+        <div class="ben-ico">💰</div>
+        <div>
+          <div class="ben-ttl">Économies sur votre facture</div>
+          <div class="ben-val">Jusqu'à 70% d'économies annuelles</div>
+          <div class="ben-dsc">Une maison moyenne économise entre 1 500 et 3 000 CHF par an dès la mise en service.</div>
+        </div>
+      </div>
+      <div class="ben-row">
+        <div class="ben-ico">🏦</div>
+        <div>
+          <div class="ben-ttl">Subventions fédérales &amp; cantonales</div>
+          <div class="ben-val">Des aides auxquelles vous avez certainement droit</div>
+          <div class="ben-dsc">Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura, Berne — aides cumulables. Démarches gérées pour vous.</div>
+        </div>
+      </div>
+      <div class="ben-row">
+        <div class="ben-ico">⚡</div>
+        <div>
+          <div class="ben-ttl">Indépendance énergétique</div>
+          <div class="ben-val">Fini les hausses de tarifs</div>
+          <div class="ben-dsc">Vous produisez votre propre énergie.</div>
+        </div>
+      </div>
+      <div class="ben-row">
+        <div class="ben-ico">🏠</div>
+        <div>
+          <div class="ben-ttl">Valorisation immobilière</div>
+          <div class="ben-val">+5 à 15% à la revente</div>
+          <div class="ben-dsc">Un bien équipé se vend plus cher et plus vite sur le marché romand.</div>
+        </div>
+      </div>
+      <div class="ben-row">
+        <div class="ben-ico">🛡️</div>
+        <div>
+          <div class="ben-ttl">Zéro risque — garantie totale</div>
+          <div class="ben-val">Garantie 30 ans — main d'œuvre, pièces &amp; déplacement inclus</div>
+          <div class="ben-dsc">4 300+ installations. Certifiés ESTI &amp; affiliés Swissolar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOLAR STRIP PHOTO 2 -->
+<div class="solar-strip">
+  <img class="ss-img"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Into_the_blue_%28Explored%29_%288314929977%29.jpg/1280px-Into_the_blue_%28Explored%29_%288314929977%29.jpg"
+    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=1000&q=80'"
+    alt="Panneaux solaires installés"
+  >
+  <div class="ss-grad"></div>
+  <div class="ss-txt">
+    <div class="ss-ey">Installateur certifié Suisse romande</div>
+    <div class="ss-h">4 300+ toits équipés.<br>On s'occupe de tout.</div>
+    <div class="ss-s">Affilié Swissolar · Certifié ESTI · 4,8 / 5 Google</div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-section">
+  <div class="testi-inner">
+    <div class="testi-head">
+      <div class="sec-label" style="color:var(--gold2)">Ils ont franchi le pas</div>
+      <div class="sec-title" style="color:#fff">Ce que disent nos clients</div>
+      <div class="testi-rating">
+        <div class="t-stars-main">★★★★★</div>
+        <div class="t-score">4,8 / 5 · 302 avis Google</div>
+      </div>
+    </div>
+    <!-- VRAIS AVIS GOOGLE -->
+    <div class="testi-grid">
+      <div class="t-card">
+        <div class="t-s">★★★★★</div>
+        <p class="t-txt">"Excellente expérience client. Merci à Rayan ZGHAB pour son accompagnement. De la visite technique à la concrétisation de notre projet, tout était parfait !"</p>
+        <div class="t-au">Emma C. · il y a 3 mois</div>
+      </div>
+      <div class="t-card">
+        <div class="t-s">★★★★★</div>
+        <p class="t-txt">"La Maison des Énergies s'occupe vraiment de tout du début à la fin. Très performant et arrangeant. Je ne peux que les recommander !"</p>
+        <div class="t-au">Monique T. · il y a 4 mois</div>
+      </div>
+      <div class="t-card">
+        <div class="t-s">★★★★★</div>
+        <p class="t-txt">"Tout le travail a été fait proprement et avec respect. Merci à toute l'équipe pour les explications, la pose et le raccordement. Je recommande fortement."</p>
+        <div class="t-au">José F. · il y a un an</div>
+      </div>
+      <div class="t-card">
+        <div class="t-s">★★★★★</div>
+        <p class="t-txt">"De A à Z, tout était parfait. Conseils patients, pose professionnelle, raccordement le lendemain. Pour moi c'est un 10 sur 10. Bravo !"</p>
+        <div class="t-au">Rose-Marie C. · il y a 7 mois</div>
+      </div>
+    </div>
+
+    <a class="google-btn" href="https://www.google.com/search?q=la+maison+des+energies#lrd=0x478c377eae463b79:0xca2a2f6c35030ce3,1,,,," target="_blank">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.7 2.5 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13 17.8 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.1-4.5 6.7l7 5.4c4.1-3.8 6.5-9.4 6.5-16.1z" style="fill:#4285F4"/><path fill="#FBBC05" d="M10.5 28.6A14.8 14.8 0 0 1 9.5 24c0-1.6.3-3.2.8-4.6l-7.8-6A24 24 0 0 0 0 24c0 3.9.9 7.5 2.7 10.7l7.8-6.1z"/><path fill="#EA4335" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7-5.4c-2 1.4-4.6 2.2-8.2 2.2-6.2 0-11.5-4.2-13.4-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z" style="fill:#34A853"/></svg>
+      Voir les 302 avis sur Google
+    </a>
+
+    <!-- VIDÉOS TÉMOIGNAGES -->
+    <div class="video-title">
+      <div class="sec-label" style="color:var(--gold2);margin-top:32px">Témoignages vidéo</div>
+    </div>
+    <div class="video-grid">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/uiHX9R9GBRU" allowfullscreen loading="lazy" title="Témoignage client 1"></iframe>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/wc2fglwjE04" allowfullscreen loading="lazy" title="Témoignage client 2"></iframe>
+      </div>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/Nmfw4iR9Inw" allowfullscreen loading="lazy" title="Témoignage client 3"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIF -->
+<div class="certif-section">
+  <div class="certif-inner">
+    <div class="sec-label">Nos certifications</div>
+    <div class="sec-title">Des garanties solides</div>
+    <div class="certif-row">
+      <div class="certif"><div class="cdot"></div>Installateur affilié Swissolar</div>
+      <div class="certif"><div class="cdot"></div>Certifié ESTI</div>
+      <div class="certif"><div class="cdot"></div>4,8 / 5 · 302 avis Google vérifiés</div>
+      <div class="certif"><div class="cdot"></div>Garantie 30 ans — main d'œuvre, pièces &amp; déplacement</div>
+      <div class="certif"><div class="cdot"></div>Sans engagement</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-ey">☀️ Subventions disponibles maintenant</div>
+    <div class="cta-ttl">Combien pouvez-vous<br>économiser ?</div>
+    <div class="cta-sub">Estimation gratuite · Sans engagement · Réponse sous 24h<br>Certifié Swissolar · ESTI · 4 300+ installations</div>
+    <button class="cta-btn" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Obtenir mon estimation gratuite →</button>
+  </div>
+</div>
+
+<footer>
+  <strong style="color:rgba(255,255,255,.42)">La Maison des Énergies SA</strong><br>
+  Av. de Riond-Bosson 13 · 1110 Morges · Tél. 021 802 35 36<br>
+  Données transmises uniquement à des installateurs certifiés. Conforme nLPD suisse.<br>
+  <a href="https://lamaisondesenergies.ch/index.php/mentions-legales/">Mentions légales</a> · <a href="https://lamaisondesenergies.ch/index.php/politique-de-confidentialite/">Politique de confidentialité</a>
+</footer>
+
+<script>
+/* FORM */
+var data={},cur=1,consented=false;
+var steps=[
+  {title:"Vous êtes ?",pct:13},
+  {title:"Votre bien",pct:38},
+  {title:"Votre projet",pct:63},
+  {title:"Vos coordonnées",pct:88}
+];
+function fmtPhone(i){var v=i.value.replace(/[^0-9+]/g,'');if(v.startsWith('0041'))v='+41'+v.slice(4);else if(v.startsWith('00'))v='+'+v.slice(2);i.value=v;}
+function validPhone(v){return/^(\+41|0041|0)[0-9]{9,11}$/.test(v.replace(/\s/g,''));}
+function goTo(n){
+  document.getElementById('s'+cur).classList.remove('show');
+  document.getElementById('s'+n).classList.add('show');cur=n;
+  document.getElementById('progTitle').textContent=steps[n-1].title;
+  document.getElementById('progPct').textContent=steps[n-1].pct+'%';
+  document.getElementById('progFill').style.width=steps[n-1].pct+'%';
+  document.getElementById('form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function pick(el,step,key,val){
+  el.closest('.opts').querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel')});
+  el.classList.add('sel');data[key]=val;
+  setTimeout(function(){goTo(step+1)},240);
+}
+function notOwner(){
+  document.getElementById('s1').innerHTML='<div style="text-align:center;padding:20px 0"><div style="font-size:2rem;margin-bottom:10px">😊</div><p style="font-weight:700;font-size:.88rem;margin-bottom:8px">Dommage !</p><p style="font-size:.78rem;color:rgba(26,18,8,.5);line-height:1.6">Les subventions solaires sont réservées aux propriétaires. Revenez lorsque vous serez propriétaire !</p></div>';
+  document.getElementById('progFill').style.width='100%';
+  document.getElementById('progPct').textContent='—';
+  document.getElementById('progTitle').textContent='Non éligible';
+}
+function toggleConsent(){consented=!consented;document.getElementById('chk').classList.toggle('on',consented);document.getElementById('cb').classList.toggle('on',consented);}
+function handleSubmit(e){
+  e.preventDefault();
+  var p=document.getElementById('prenom').value.trim(),n=document.getElementById('nom').value.trim(),ph=document.getElementById('phone').value.trim();
+  if(!p||!n||!ph){alert('Veuillez remplir tous les champs.');return false;}
+  if(!validPhone(ph)){alert('Numéro suisse invalide (ex: +41 79 123 45 67).');return false;}
+  if(!consented){alert('Veuillez accepter les conditions.');return false;}
+  var form=document.getElementById('solarForm');
+  for(var k in data){if(data.hasOwnProperty(k)){var h=document.createElement('input');h.type='hidden';h.name=k;h.value=data[k];form.appendChild(h);}}
+  if(typeof fbq==='function')fbq('track','Lead');
+  fetch('https://hooks.zapier.com/hooks/catch/18792693/4bc4xc7/',{method:'POST',body:new FormData(form),mode:'no-cors'});
+  setTimeout(function(){window.location.href='merci.html';},500);
+  return false;
+}
+
+/* CAROUSEL */
+var slide=0,total=6,autoT;
+var track=document.getElementById('ct');
+var outer=document.getElementById('co');
+var dotsEl=document.getElementById('dots');
+for(var i=0;i<total;i++){
+  var d=document.createElement('div');d.className='dot-i';d.setAttribute('data-i',i);
+  d.onclick=(function(idx){return function(){toSlide(idx)};})(i);
+  dotsEl.appendChild(d);
+}
+function updDots(){dotsEl.querySelectorAll('.dot-i').forEach(function(d,i){d.classList.toggle('on',i===slide);d.style.width=i===slide?'20px':'6px';});}
+function toSlide(n){slide=(n+total)%total;var w=outer.offsetWidth+10;track.style.transform='translateX(-'+(slide*w)+'px)';updDots();resetAuto();}
+function mv(dir){toSlide(slide+dir);}
+function resetAuto(){clearInterval(autoT);autoT=setInterval(function(){mv(1);},4500);}
+updDots();resetAuto();
+var tx=0;
+track.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>40)mv(dx<0?1:-1);},{passive:true});
+window.addEventListener('resize',function(){var w=outer.offsetWidth+10;track.style.transition='none';track.style.transform='translateX(-'+(slide*w)+'px)';setTimeout(function(){track.style.transition='transform .4s ease';},50);});
+</script>
+</body>
+</html>
