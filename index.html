@@ -880,7 +880,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
 
     const payload = {
-      prenom, nom, email, telephone: tel, canton,
+      prenom, nom, email, phone: tel, canton,
       source: 'index-contact',
       date: new Date().toISOString()
     };
