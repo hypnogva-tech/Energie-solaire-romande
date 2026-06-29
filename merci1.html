@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci – La Maison des Énergies</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1646836646368027');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
+/></noscript>
+<!-- Fin Facebook Pixel -->
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bleu: #2D7DD2;
+    --noir: #0D1B2A;
+    --or: #F5C518;
+    --rouge: #E8340A;
+    --blanc: #ffffff;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--noir);
+    color: var(--blanc);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .logo {
+    margin-bottom: 40px;
+  }
+
+  .logo img {
+    height: 60px;
+    opacity: 0.9;
+  }
+
+  .check {
+    font-size: 4rem;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  h1 .accent { color: var(--or); }
+
+  .sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto 40px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    text-align: left;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    background: var(--or);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.85rem;
+    color: var(--noir);
+    margin-top: 1px;
+  }
+
+  .step-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .step-text strong { color: white; }
+
+  .btn-retour {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .btn-retour:hover {
+    border-color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.8);
+  }
+
+  footer {
+    margin-top: 48px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .steps { padding: 0 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="check">✅</div>
+
+<h1>Votre demande a bien été reçue.<br><span class="accent">Un expert vous contacte rapidement.</span></h1>
+
+<p class="sub">
+  Merci pour votre confiance. Voici ce qui va se passer dans les prochaines heures.
+</p>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-text"><strong>Vous recevez un appel</strong> d'un conseiller La Maison des Énergies sous 24h ouvrées.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-text"><strong>Nous analysons votre situation</strong> — surface de toit, consommation, canton — pour établir votre bilan personnalisé.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-text"><strong>Vous recevez votre devis gratuit</strong> avec le détail des économies possibles et des subventions disponibles dans votre canton.</div>
+  </div>
+</div>
+
+<a href="index.html" class="btn-retour">← Retourner à la page principale</a>
+
+<footer>
+  © La Maison des Énergies · Av. de Riond-Bosson 13, 1110 Morges · 021 802 35 36<br>
+  <a href="https://lamaisondesenergies.ch/index.php/mentions-legales/">Mentions légales</a>
+</footer>
+
+</body>
+</html>
