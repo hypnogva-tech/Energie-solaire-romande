@@ -406,15 +406,18 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     btn.disabled = true;
     btn.textContent = 'Envoi en cours…';
 
+    const formData = new URLSearchParams();
+    formData.append('prenom', prenom);
+    formData.append('email', email);
+    formData.append('telephone', tel);
+    formData.append('source', 'optin-video');
+    formData.append('page', window.location.href);
+    formData.append('date', new Date().toISOString());
+
     fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prenom, email, telephone: tel,
-        source: 'optin-video',
-        page: window.location.href,
-        date: new Date().toISOString()
-      })
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
     })
     .catch(() => {})
     .finally(() => {
