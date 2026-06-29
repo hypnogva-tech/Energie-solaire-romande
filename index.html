@@ -885,10 +885,13 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
       date: new Date().toISOString()
     };
 
+    const formData = new URLSearchParams();
+    Object.entries(payload).forEach(([k, v]) => formData.append(k, v));
+
     fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
     })
     .catch(() => {}) // on ignore les erreurs réseau pour ne pas bloquer
     .finally(() => {
