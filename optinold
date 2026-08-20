@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidéo gratuite – Le solaire en Suisse Romande</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1646836646368027');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
+/></noscript>
+<!-- Fin Facebook Pixel -->
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bleu: #2D7DD2;
+    --bleu-dark: #1A5FA8;
+    --noir: #0D1B2A;
+    --or: #F5C518;
+    --rouge: #E8340A;
+    --blanc: #ffffff;
+    --gris: #f5f7fa;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--noir);
+    color: var(--blanc);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top-bar {
+    width: 100%;
+    background: var(--rouge);
+    text-align: center;
+    padding: 5px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .hero {
+    width: 100%;
+    max-width: 680px;
+    padding: 28px 24px 0;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: rgba(245,197,24,0.15);
+    color: var(--or);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(245,197,24,0.3);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.4rem, 5vw, 2.6rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 .accent { color: var(--or); }
+
+  .hero .sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.65;
+    margin-bottom: 16px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video-thumb { position: relative; width: 100%; max-width: 520px; margin: 0 auto 36px; border-radius: 12px; overflow: hidden; border: 2px solid rgba(245,197,24,0.4); }
+  .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    pointer-events: none;
+  }
+  .play-icon-overlay {
+    width: 64px;
+    height: 64px;
+    background: rgba(245,197,24,0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #0D1B2A;
+    padding-left: 4px;
+  }
+  .thumb-overlay-label {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  }
+  .video-thumb-x {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 16px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(245,197,24,0.4);
+    cursor: default;
+  }
+
+  .video-thumb-inner {
+    background: linear-gradient(135deg, #1a2e45 0%, #0d1b2a 100%);
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .thumb-duration {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .thumb-lock {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--rouge);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .points {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+
+  .point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.97rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .point .icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .form-box {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin: 0 auto 48px;
+  }
+
+  .form-box h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .form-box .form-sub {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 22px;
+  }
+
+  .form-box input {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: white;
+    font-size: 0.97rem;
+    font-family: inherit;
+    margin-bottom: 12px;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .form-box input::placeholder { color: rgba(255,255,255,0.35); }
+  .form-box input:focus { border-color: var(--or); }
+
+  .checkbox-proprio {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+  .checkbox-proprio input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin: 2px 0 0;
+    accent-color: var(--or);
+    cursor: pointer;
+  }
+  .checkbox-proprio span {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  .btn-optin {
+    width: 100%;
+    background: var(--or);
+    color: var(--noir);
+    font-size: 1.05rem;
+    font-weight: 900;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 4px;
+  }
+
+  .btn-optin:hover { background: #e0b014; transform: translateY(-1px); }
+  .btn-optin:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+  .form-legal {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  footer {
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+  }
+
+  footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 16px 16px 0; }
+    .form-box { padding: 20px 16px; margin: 0 12px 32px; }
+    .points { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">🔒 Accès gratuit · Vidéo exclusive · Disponible maintenant</div>
+
+<section class="hero">
+  <div class="eyebrow">⚡ Propriétaires en Suisse Romande</div>
+  <h1>Ce que personne ne vous dit<br>sur le solaire<br><span class="accent">en Suisse Romande.</span></h1>
+  <p class="sub">
+    Vidéo de 5 min qui contient tout ce que vous devez absolument connaître avant d'installer des panneaux solaires chez vous.
+  </p>
+</section>
+
+<!-- Thumbnail vidéo -->
+<div class="video-thumb" onclick="document.getElementById('form-optin').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">
+  <div class="video-thumb-inner" style="padding:0;display:block;position:relative;overflow:hidden;aspect-ratio:16/9;">
+    <img src="thumbnail.jpg" alt="Installation panneaux solaires" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+</div>
+
+<!-- Formulaire -->
+<div class="form-box" id="form-optin">
+  <h2>Regarder la vidéo gratuitement</h2>
+  <p class="form-sub">Entrez vos coordonnées, un expert vous envoie l'accès immédiatement.</p>
+
+  <input type="text" id="prenom" placeholder="Prénom *">
+  <input type="email" id="email" placeholder="Email *">
+  <input type="tel" id="tel" placeholder="Téléphone *">
+
+  <!-- Honeypot anti-bot : champ invisible pour les humains, visible/rempli par les robots -->
+  <input type="text" id="website" name="website" style="position:absolute;left:-9999px;top:-9999px;" tabindex="-1" autocomplete="off">
+
+  <label class="checkbox-proprio">
+    <input type="checkbox" id="proprio-check">
+    <span>Je confirme être propriétaire de ma maison.</span>
+  </label>
+
+  <button class="btn-optin" id="btn-submit">Je veux voir la vidéo →</button>
+
+  <p class="form-legal">
+    En transmettant vos coordonnées, vous autorisez La Maison des Énergies à vous contacter pour vous envoyer l'accès à la vidéo et vous proposer un bilan solaire gratuit. Vos données sont confidentielles et ne seront jamais revendues.<br>
+    <a href="https://lamaisondesenergies.ch/index.php/politique-de-confidentialite/">Politique de confidentialité</a>
+  </p>
+</div>
+
+<!-- Points d'intérêt -->
+<div class="points">
+  <div class="point">
+    <span class="icon">⚡</span>
+    <span>Pourquoi votre facture d'électricité va continuer à augmenter et ce que vous pouvez faire maintenant.</span>
+  </div>
+  <div class="point">
+    <span class="icon">🪙</span>
+    <span>Les subventions cantonales et la déduction fiscale disponibles jusqu'en 2029 et comment en profiter avant qu'il soit trop tard.</span>
+  </div>
+  <div class="point">
+    <span class="icon">⚠️</span>
+    <span>Les 3 arnaques les plus courantes chez les installateurs solaires en Suisse Romande et comment les reconnaître.</span>
+  </div>
+  <div class="point">
+    <span class="icon">✅</span>
+    <span>Ce qu'une vraie installation clé en main devrait inclure. Sans surprise, sans stress.</span>
+  </div>
+</div>
+
+<footer>
+  © La Maison des Énergies · Av. de Riond-Bosson 13, 1110 Morges · 021 802 35 36<br>
+  <a href="https://lamaisondesenergies.ch/index.php/mentions-legales/">Mentions légales</a>
+</footer>
+
+<script>
+  const ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/18792693/4bc4xc7/';
+
+  document.getElementById('btn-submit').addEventListener('click', () => {
+    const prenom = document.getElementById('prenom').value.trim();
+    const email  = document.getElementById('email').value.trim();
+    const tel    = document.getElementById('tel').value.trim();
+    const proprio = document.getElementById('proprio-check')?.checked;
+    const honeypot = document.getElementById('website').value.trim();
+
+    if (honeypot !== '') {
+      return;
+    }
+
+    const prenomValide = /^[A-Za-zÀ-ÿ\s\-']{2,}$/.test(prenom) && !/^(.)\1+$/.test(prenom);
+    const emailValide = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email);
+
+    const telNettoye = tel.replace(/[\s.\-()]/g, '');
+    const telValide = /^(\+41|0041|0)?[0-9]{9}$/.test(telNettoye);
+
+    if (!prenomValide) {
+      alert('Merci d\'indiquer votre prénom (lettres uniquement, 2 caractères minimum).');
+      return;
+    }
+    if (!emailValide) {
+      alert('Merci d\'indiquer une adresse email valide.');
+      return;
+    }
+    if (!telValide) {
+      alert('Merci d\'indiquer un numéro de téléphone suisse valide (9 chiffres, ex: 079 123 45 67).');
+      return;
+    }
+    if (!proprio) {
+      alert('Veuillez confirmer que vous êtes propriétaire de votre logement.');
+      return;
+    }
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    const formData = new URLSearchParams();
+    formData.append('prenom', prenom);
+    formData.append('email', email);
+    formData.append('phone', tel);
+    formData.append('source', 'optin-video');
+    formData.append('page', window.location.href);
+    formData.append('date', new Date().toISOString());
+
+    fetch(ZAPIER_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
+    })
+    .catch(() => {})
+    .finally(() => {
+      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+      window.location.href = 'index.html';
+    });
+  });
+</script>
+
+</body>
+</html>
