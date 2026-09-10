@@ -46,7 +46,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     align-items: center;
   }
 
-  /* ── BARRE TOP ── */
   .top-bar {
     width: 100%;
     background: var(--rouge);
@@ -57,7 +56,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     letter-spacing: 0.04em;
   }
 
-  /* ── HERO ── */
   .hero {
     width: 100%;
     max-width: 680px;
@@ -98,8 +96,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     margin-right: auto;
   }
 
-  /* ── THUMBNAIL VIDÉO ── */
-
   .video-thumb { position: relative; width: 100%; max-width: 520px; margin: 0 auto 36px; border-radius: 12px; overflow: hidden; border: 2px solid rgba(245,197,24,0.4); }
   .thumb-overlay {
     position: absolute;
@@ -130,26 +126,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     letter-spacing: 0.03em;
     text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   }
-  .video-thumb-x {
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto 16px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid rgba(245,197,24,0.4);
-    cursor: default;
-  }
-
-  .video-thumb-inner {
-    background: linear-gradient(135deg, #1a2e45 0%, #0d1b2a 100%);
-    aspect-ratio: 16/9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-
 
   .thumb-duration {
     position: absolute;
@@ -176,7 +152,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     letter-spacing: 0.05em;
   }
 
-  /* ── POINTS ── */
   .points {
     width: 100%;
     max-width: 480px;
@@ -202,7 +177,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     margin-top: 1px;
   }
 
-  /* ── FORMULAIRE ── */
   .form-box {
     width: 100%;
     max-width: 480px;
@@ -243,7 +217,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 
   .form-box input::placeholder { color: rgba(255,255,255,0.35); }
   .form-box input:focus { border-color: var(--or); }
-
 
   .checkbox-proprio {
     display: flex;
@@ -292,7 +265,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     line-height: 1.5;
   }
 
-  /* ── FOOTER ── */
   footer {
     width: 100%;
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -317,14 +289,12 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 
 <section class="hero">
   <div class="eyebrow">⚡ Propriétaires en Suisse Romande</div>
- <h1>Ne faites pas ces erreurs<br>que trop de Romands font<br><span class="accent">en installant leurs panneaux solaires.</span></h1>
+  <h1>Ne faites pas ces erreurs<br>que trop de Romands font<br><span class="accent">en installant leurs panneaux solaires.</span></h1>
   <p class="sub">
     Vidéo de 5 min qui contient tout ce que vous devez absolument connaître avant d'installer des panneaux solaires chez vous.
   </p>
 </section>
 
-<!-- Thumbnail vidéo floutée -->
-<!-- Thumbnail vidéo -->
 <div class="video-thumb" onclick="document.getElementById('form-optin').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">
   <picture>
     <source srcset="video-thumbnail.webp" type="image/webp">
@@ -332,7 +302,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   </picture>
 </div>
 
-<!-- Formulaire -->
 <div class="form-box" id="form-optin">
   <h2>Regarder la vidéo gratuitement</h2>
   <p class="form-sub">Entrez vos coordonnées, un expert vous envoie l'accès immédiatement.</p>
@@ -340,6 +309,9 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   <input type="text" id="prenom" placeholder="Prénom *">
   <input type="email" id="email" placeholder="Email *">
   <input type="tel" id="tel" placeholder="Téléphone *">
+
+  <!-- Honeypot anti-bot : champ invisible pour un humain, rempli automatiquement par les bots -->
+  <input type="text" id="website" name="website" style="position:absolute; left:-9999px; opacity:0;" tabindex="-1" autocomplete="off">
 
   <label class="checkbox-proprio">
     <input type="checkbox" id="proprio-check">
@@ -354,7 +326,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   </p>
 </div>
 
-<!-- Points d'intérêt -->
 <div class="points">
   <div class="point">
     <span class="icon">⚡</span>
@@ -382,17 +353,86 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 <script>
   const ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/18792693/4bc4xc7/';
 
+  // Horodatage du chargement de la page, pour détecter les soumissions trop rapides (bots)
+  const pageLoadTime = Date.now();
+
+  // Regex de validation — volontairement permissifs sur la FORME (accents DE/FR/IT,
+  // apostrophes courbes ’ ou droites ', tirets, espaces) pour ne jamais bloquer un
+  // vrai nom composé. On bloque seulement le contenu clairement anormal (chiffres, etc.)
+  const REGEX_NOM = /^[A-Za-zÀ-ÿĀ-žʼ' -]{2,60}$/;
+  const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  const EMAILS_JETABLES = ['mailinator.com', 'yopmail.com', 'guerrillamail.com', 'tempmail.com'];
+
+  function nettoyerTelephone(tel) {
+    // enlève espaces, points, tirets, parenthèses
+    let t = tel.replace(/[\s.\-()]/g, '');
+    // normalise les préfixes internationaux vers le format suisse local (0…)
+    if (t.startsWith('+41')) t = '0' + t.slice(3);
+    else if (t.startsWith('0041')) t = '0' + t.slice(4);
+    return t;
+  }
+
+  function telephoneValide(t) {
+    // Suisse : 10 chiffres commençant par 0 (fixe ou mobile, tous préfixes : 021, 022, 024, 026, 027, 031, 078, 079, etc.)
+    if (/^0\d{9}$/.test(t)) return true;
+    // 9 chiffres sans le 0 initial (oubli fréquent), qu'on complète automatiquement
+    if (/^\d{9}$/.test(t)) return true;
+    return false;
+  }
+
   document.getElementById('btn-submit').addEventListener('click', () => {
     const prenom = document.getElementById('prenom').value.trim();
     const email  = document.getElementById('email').value.trim();
-    const tel    = document.getElementById('tel').value.trim();
-
+    const telBrut = document.getElementById('tel').value.trim();
+    const tel = nettoyerTelephone(telBrut);
     const proprio = document.getElementById('proprio-check')?.checked;
+    const honeypot = document.getElementById('website').value;
 
+    // --- Filtre anti-bot n°1 : honeypot rempli = bot, on rejette silencieusement ---
+    if (honeypot) {
+      console.log('Soumission bloquée (honeypot).');
+      return;
+    }
+
+    // --- Filtre anti-bot n°2 : soumission trop rapide (moins de 3 secondes) ---
+    const tempsEcoule = Date.now() - pageLoadTime;
+    if (tempsEcoule < 3000) {
+      console.log('Soumission bloquée (trop rapide).');
+      return;
+    }
+
+    // --- Champs obligatoires ---
     if (!prenom || !email || !tel) {
       alert('Veuillez remplir tous les champs.');
       return;
     }
+
+    // --- Validation du prénom (bloque insultes, chiffres, texte aléatoire) ---
+    if (!REGEX_NOM.test(prenom)) {
+      alert('Merci de saisir un prénom valide (lettres uniquement).');
+      return;
+    }
+
+    // --- Validation de l'email ---
+    if (!REGEX_EMAIL.test(email)) {
+      alert('Merci de saisir une adresse email valide.');
+      return;
+    }
+    const domaineEmail = email.split('@')[1]?.toLowerCase();
+    if (EMAILS_JETABLES.includes(domaineEmail)) {
+      alert('Merci de saisir une adresse email personnelle (pas une adresse jetable).');
+      return;
+    }
+
+    // --- Validation du téléphone (tolérante sur le format, fixe ou mobile) ---
+    if (!telephoneValide(tel)) {
+      alert('Merci de vérifier votre numéro de téléphone (10 chiffres, fixe ou mobile — ex: 021 802 35 36 ou 079 876 54 32).');
+      return;
+    }
+    // Complète le 0 initial si la personne l'a oublié
+    const telFinal = tel.length === 9 ? '0' + tel : tel;
+
     if (!proprio) {
       alert('Veuillez confirmer que vous êtes propriétaire de votre logement.');
       return;
@@ -405,7 +445,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     const formData = new URLSearchParams();
     formData.append('prenom', prenom);
     formData.append('email', email);
-    formData.append('phone', tel);
+    formData.append('phone', telFinal);
     formData.append('source', 'optin-video');
     formData.append('page', window.location.href);
     formData.append('date', new Date().toISOString());
