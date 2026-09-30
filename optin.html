@@ -364,29 +364,6 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 
   const EMAILS_JETABLES = ['mailinator.com', 'yopmail.com', 'guerrillamail.com', 'tempmail.com'];
 
-  // Liste de mots grossiers/insultants courants à bloquer dans le champ prénom
-  const MOTS_INTERDITS = [
-    'merde', 'connard', 'connasse', 'salope', 'pute', 'putain', 'enculé', 'enculee',
-    'batard', 'bâtard', 'con', 'conne', 'debile', 'débile', 'idiot', 'idiote',
-    'nique', 'ntm', 'fdp', 'ftg', 'branleur', 'branleuse', 'abruti', 'abrutie',
-    'crétin', 'cretin', 'crétine', 'cretine', 'imbécile', 'imbecile', 'sac à merde',
-    'video de merde', 'vidéo de merde', 'nul', 'nulle', 'arnaque', 'escroc'
-  ];
-
-  function contientMotInterdit(texte) {
-    // Normalisation pour détecter les contournements : accents retirés, leetspeak
-    // (3→e, 4→a, 0→o, 1→i, 5→s, 7→t), espaces/tirets retirés, minuscules.
-    const normaliser = (s) => s
-      .toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retire les accents
-      .replace(/3/g, 'e').replace(/4/g, 'a').replace(/0/g, 'o')
-      .replace(/1/g, 'i').replace(/5/g, 's').replace(/7/g, 't')
-      .replace(/[^a-z]/g, ''); // retire espaces, tirets, ponctuation
-
-    const texteNormalise = normaliser(texte);
-    return MOTS_INTERDITS.some(mot => texteNormalise.includes(normaliser(mot)));
-  }
-
   function nettoyerTelephone(tel) {
     // enlève espaces, points, tirets, parenthèses
     let t = tel.replace(/[\s.\-()]/g, '');
@@ -431,13 +408,9 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
       return;
     }
 
-    // --- Validation du prénom (bloque insultes, chiffres, texte aléatoire) ---
+    // --- Validation du prénom (lettres uniquement) ---
     if (!REGEX_NOM.test(prenom)) {
       alert('Merci de saisir un prénom valide (lettres uniquement).');
-      return;
-    }
-    if (contientMotInterdit(prenom)) {
-      alert('Merci de saisir un prénom valide.');
       return;
     }
 
@@ -485,7 +458,8 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     .catch(() => {})
     .finally(() => {
       if (typeof fbq === 'function') { fbq('track', 'Lead'); }
-      window.location.href = 'index.html';
+      // Laisse 1 seconde au pixel pour envoyer l'événement Lead à Meta avant de changer de page
+      setTimeout(() => { window.location.href = 'index.html'; }, 1000);
     });
   });
 </script>
