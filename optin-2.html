@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Étude solaire gratuite – Propriétaires en Suisse Romande</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1646836646368027');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
+/></noscript>
+<!-- Fin Facebook Pixel -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0B2A55;
+    --bleu: #0072CE;
+    --bleu-dark: #005BA6;
+    --bleu-clair: #EAF4FC;
+    --bleu-pale: #F4F9FE;
+    --or: #F5C518;
+    --rouge: #E8340A;
+    --blanc: #ffffff;
+    --texte: #2E3B4E;
+    --texte-doux: #5F6D7E;
+    --bord: #DCE6F0;
+    --radius: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: var(--blanc);
+    color: var(--texte);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  h1, h2, h3, .btn, .logo, .kicker, .opt { font-family: 'Montserrat', Arial, sans-serif; }
+
+  .wrap { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 780px; }
+
+  /* ---------- Header ---------- */
+  .top-bar {
+    background: var(--navy); color: var(--blanc); text-align: center;
+    padding: 6px 16px; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.03em;
+  }
+  header.site {
+    background: var(--blanc); position: sticky; top: 0; z-index: 40;
+    box-shadow: 0 2px 12px rgba(11,42,85,0.08);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 70px; }
+  .logo { color: var(--navy); font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 8px; }
+  .logo .dot {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--bleu); color: var(--or);
+    display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem;
+  }
+
+  /* ---------- Boutons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--bleu); color: var(--blanc);
+    font-weight: 700; font-size: 1rem;
+    padding: 15px 32px; border-radius: 999px;
+    text-decoration: none; border: 2px solid var(--bleu); cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  }
+  .btn:hover { background: var(--bleu-dark); border-color: var(--bleu-dark); transform: translateY(-1px); }
+  .btn-sm { padding: 10px 20px; font-size: 0.88rem; }
+  .btn-white { background: var(--blanc); color: var(--bleu); border-color: var(--blanc); }
+  .btn-white:hover { background: var(--bleu-clair); border-color: var(--bleu-clair); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; color: var(--navy);
+    background: var(--blanc);
+    padding: 56px 0 72px;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.18; margin-bottom: 18px; color: var(--navy); }
+  .hero h1 .accent { color: var(--bleu); }
+  .hero h1 .accent-clair { color: #3E9BE3; }
+  .hero h1 .deadline {
+    background: linear-gradient(transparent 55%, rgba(245,197,24,0.55) 55%, rgba(245,197,24,0.55) 92%, transparent 92%);
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .hero .sub { font-size: 1.08rem; color: var(--texte-doux); margin-bottom: 24px; max-width: 540px; }
+  .hero-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+  .hero-bullets li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: var(--navy); }
+  .hero-bullets li::before {
+    content: "✓"; flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--bleu); color: var(--blanc); font-weight: 800; font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center; margin-top: 1px;
+  }
+  .h1-top {
+    display: block; font-size: 0.55em; font-weight: 800; color: var(--bleu);
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;
+  }
+  .chips {
+    font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; font-size: 0.95rem;
+    color: var(--navy); margin-bottom: 16px;
+  }
+  .hero-note { font-size: 0.78rem; color: var(--texte-doux); margin-top: 14px; }
+  .hero .form-box { border: 1px solid var(--bord); box-shadow: 0 20px 50px rgba(11,42,85,0.14); }
+
+  /* ---------- Carte questionnaire ---------- */
+  .form-box {
+    background: var(--blanc); color: var(--texte);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    scroll-margin-top: 90px;
+  }
+  .offre-bar {
+    background: var(--or); color: var(--navy);
+    padding: 12px 20px; font-size: 0.86rem; line-height: 1.4;
+    display: flex; gap: 10px; align-items: center;
+  }
+  .offre-bar .ico { font-size: 1.3rem; flex-shrink: 0; }
+  .offre-bar strong { font-family: 'Montserrat', Arial, sans-serif; }
+  .offre-bar .countdown { display: block; font-size: 0.76rem; font-weight: 600; opacity: 0.8; }
+
+  .form-inner { padding: 24px 26px 26px; min-height: 440px; }
+
+  .progress-wrap { margin-bottom: 20px; }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.76rem; font-weight: 700; color: var(--bleu);
+    margin-bottom: 8px; font-family: 'Montserrat', Arial, sans-serif;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .progress { height: 6px; background: var(--bleu-clair); border-radius: 999px; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0%; background: var(--bleu); border-radius: 999px; transition: width 0.35s ease; }
+
+  .step { display: none; }
+  .step.active { display: block; animation: in 0.3s ease; }
+  @keyframes in { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+
+  .step h2 { font-size: 1.2rem; font-weight: 800; color: var(--navy); line-height: 1.3; margin-bottom: 4px; }
+  .step .hint { font-size: 0.88rem; color: var(--texte-doux); margin-bottom: 18px; }
+
+  .options { display: grid; gap: 10px; }
+  .options.grid { grid-template-columns: 1fr 1fr; }
+
+  .opt {
+    width: 100%; background: var(--blanc);
+    border: 1.5px solid var(--bord); border-radius: 12px;
+    padding: 13px 16px; color: var(--navy);
+    font-size: 0.94rem; font-weight: 600;
+    text-align: left; cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  }
+  .opt:hover { border-color: var(--bleu); background: var(--bleu-pale); }
+  .opt:active { transform: scale(0.99); }
+  .opt .e {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+    background: var(--bleu-clair); display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .opt .label { flex: 1; }
+  .opt::after {
+    content: ""; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+    border: 1.5px solid var(--bord); font-size: 0.7rem; font-weight: 800; color: var(--blanc);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .opt.selected { border-color: var(--bleu); background: var(--bleu-clair); }
+  .opt.selected::after { content: "✓"; background: var(--bleu); border-color: var(--bleu); }
+  .options.grid .opt { justify-content: center; text-align: center; }
+  .options.grid .opt::after { display: none; }
+
+  .back {
+    background: none; border: none; color: var(--texte-doux);
+    font-size: 0.86rem; font-weight: 600; font-family: inherit;
+    cursor: pointer; margin-top: 16px; padding: 4px 0;
+  }
+  .back:hover { color: var(--bleu); }
+
+  .good-news {
+    background: var(--bleu-clair); border-radius: 12px;
+    padding: 12px 14px; font-size: 0.9rem; line-height: 1.5;
+    margin: 10px 0 16px; color: var(--navy);
+  }
+
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .form-box input[type="text"],
+  .form-box input[type="email"],
+  .form-box input[type="tel"] {
+    width: 100%; background: var(--blanc);
+    border: 1px solid var(--bord); border-radius: 10px;
+    padding: 14px 16px; color: var(--navy);
+    font-size: 0.97rem; font-family: inherit;
+    margin-bottom: 12px; outline: none; transition: border 0.2s, box-shadow 0.2s;
+  }
+  .form-box input::placeholder { color: #8C99A8; }
+  .form-box input:focus { border-color: var(--bleu); box-shadow: 0 0 0 3px rgba(0,114,206,0.15); }
+
+  .btn-optin { width: 100%; font-size: 1.02rem; padding: 16px; margin-top: 4px; }
+  .btn-optin:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+  .form-reassure {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 16px;
+    margin-top: 14px; font-size: 0.8rem; color: var(--bleu); font-weight: 600;
+  }
+  .form-legal { text-align: center; font-size: 0.72rem; color: #8C99A8; margin-top: 12px; line-height: 1.5; }
+  .form-legal a { color: var(--bleu); }
+
+  .stop-box { text-align: center; padding: 40px 4px 10px; }
+  .stop-box .big { font-size: 2.4rem; margin-bottom: 12px; }
+  .stop-box p { color: var(--texte-doux); }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 80px 0; }
+  section.block.alt { background: var(--bleu-pale); }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .kicker { display: block; color: var(--bleu); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .section-title h2, .h2 { font-size: clamp(1.5rem, 3.4vw, 2.15rem); font-weight: 800; color: var(--navy); line-height: 1.22; }
+  .section-title p { color: var(--texte-doux); margin: 12px auto 0; max-width: 640px; }
+
+  .photo {
+    border-radius: var(--radius); min-height: 280px;
+    background-size: cover; background-position: center;
+    background-color: var(--bleu-clair);
+  }
+
+  .rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .row { border: 1px solid var(--bord); border-radius: var(--radius); padding: 30px 26px; background: var(--blanc); }
+  .row .pic {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--bleu-clair);
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 14px;
+  }
+  .row h3 { font-size: 1.35rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+  .row .lead { font-family: 'Montserrat', Arial, sans-serif; color: var(--bleu); font-weight: 700; margin-bottom: 10px; }
+  .row p { color: var(--texte-doux); }
+
+  .cta-band { background: var(--bleu); color: var(--blanc); padding: 48px 0; text-align: center; }
+  .cta-band h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); font-weight: 800; margin-bottom: 6px; }
+  .cta-band p { color: rgba(255,255,255,0.88); margin-bottom: 22px; }
+
+  .benefits { display: block; }
+  .benefits .photo { min-height: 100%; }
+  .numbered { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .num-card { background: var(--blanc); border-radius: var(--radius); padding: 24px 22px; box-shadow: 0 6px 24px rgba(11,42,85,0.07); }
+  .num { font-family: 'Montserrat', Arial, sans-serif; font-size: 2.1rem; font-weight: 800; color: var(--bleu); line-height: 1; margin-bottom: 10px; }
+  .num-card h3 { font-size: 1.02rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .num-card p { font-size: 0.93rem; color: var(--texte-doux); }
+
+  .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .why-card { text-align: center; border: 1px solid var(--bord); border-radius: var(--radius); padding: 32px 24px; }
+  .why-card .ico {
+    width: 68px; height: 68px; margin: 0 auto 16px; border-radius: 50%;
+    background: var(--bleu-clair); display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
+  }
+  .why-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .why-card p { font-size: 0.95rem; color: var(--texte-doux); }
+
+  .offer {
+    display: block; max-width: 720px; margin: 0 auto; text-align: center;
+    background: var(--blanc); border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 10px 34px rgba(11,42,85,0.1);
+  }
+  .offer .photo { border-radius: 0; min-height: 320px; }
+  .offer-body { padding: 44px 40px; }
+  .offer-body h2 { margin-bottom: 14px; }
+  .offer-body > p { color: var(--texte-doux); margin-bottom: 18px; }
+  .offer ul { list-style: none; display: inline-flex; flex-direction: column; gap: 12px; margin-bottom: 28px; text-align: left; }
+  .offer li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; color: var(--navy); }
+  .offer li::before {
+    content: "✓"; flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--bleu); color: var(--blanc); font-size: 0.8rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; margin-top: 1px;
+  }
+
+  .faq { display: flex; flex-direction: column; gap: 12px; }
+  .faq details { background: var(--blanc); border: 1px solid var(--bord); border-radius: 12px; padding: 0 22px; }
+  .faq details[open] { border-color: var(--bleu); }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 20px 32px 20px 0; position: relative;
+    font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; color: var(--navy); font-size: 1rem;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    width: 26px; height: 26px; border-radius: 50%; background: var(--bleu-clair); color: var(--bleu);
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+  }
+  .faq details[open] summary::after { content: "–"; background: var(--bleu); color: var(--blanc); }
+  .faq details p { padding: 0 0 20px; color: var(--texte-doux); font-size: 0.95rem; }
+
+  .final {
+    background: linear-gradient(135deg, var(--navy), var(--bleu));
+    color: var(--blanc); text-align: center; padding: 72px 0;
+  }
+  .final h2 { font-size: clamp(1.5rem, 3.4vw, 2.15rem); font-weight: 800; margin-bottom: 10px; }
+  .final p { color: rgba(255,255,255,0.85); margin-bottom: 26px; }
+  .final .badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: var(--blanc); padding: 10px 16px; box-shadow: 0 -4px 16px rgba(11,42,85,0.12);
+    display: none; transform: translateY(110%); transition: transform 0.25s;
+  }
+  .sticky-cta.show { transform: translateY(0); }
+  .sticky-cta .btn { width: 100%; }
+
+  footer {
+    background: var(--navy); padding: 32px 20px 90px; text-align: center;
+    font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.8;
+  }
+  footer .logo { color: var(--blanc); justify-content: center; margin-bottom: 10px; }
+  footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+
+  /* ---------- Preuves : Google, certifications, témoignages ---------- */
+  .google-line {
+    display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 22px;
+  }
+  .google-line .stars { color: #F5A623; letter-spacing: 1px; }
+  .google-line .muted { color: var(--texte-doux); font-weight: 400; }
+
+  .certifs { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .certif {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--bord); border-radius: 999px; padding: 10px 20px;
+    font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy);
+  }
+  .certif .badge {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--bleu); color: var(--blanc);
+    display: flex; align-items: center; justify-content: center; font-size: 0.75rem;
+  }
+
+  .avis { background: var(--navy); color: var(--blanc); padding: 80px 0; }
+  .avis .kicker { color: #7EC8F5; }
+  .avis .section-title h2 { color: var(--blanc); }
+  .google-badge {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+    background: var(--blanc); color: var(--navy); border-radius: 999px; padding: 8px 18px;
+    font-weight: 700; font-size: 0.9rem;
+  }
+  .google-badge .stars { color: #F5A623; }
+  .avis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 56px; }
+  .avis-card { background: var(--blanc); color: var(--texte); border-radius: var(--radius); padding: 26px 24px; }
+  .avis-card .stars { color: #F5A623; margin-bottom: 10px; letter-spacing: 1px; }
+  .avis-card p { font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px; }
+  .avis-card .auteur { font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+  .avis-card .quand { font-size: 0.8rem; color: var(--texte-doux); }
+  .videos-title { text-align: center; font-family: 'Montserrat', Arial, sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 24px; }
+  .videos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .video { border-radius: 14px; overflow: hidden; aspect-ratio: 9/16; position: relative; box-shadow: 0 8px 32px rgba(0,0,0,0.35); background: #000; }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  @media (max-width: 900px) {
+    .avis { padding: 56px 0; }
+    .avis-grid { grid-template-columns: 1fr; }
+    .videos { grid-template-columns: 1fr; max-width: 320px; }
+    .google-line { justify-content: center; }
+  }
+
+
+  .form-certifs { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; }
+  .form-certifs span {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--navy);
+  }
+  .form-certifs .badge {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--bleu); color: var(--blanc);
+    display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem;
+  }
+  .avis-band { background: var(--bleu-pale); padding: 72px 0; }
+  .avis-band .avis-grid { margin-bottom: 0; }
+  .avis-band .avis-card { box-shadow: 0 6px 24px rgba(11,42,85,0.07); }
+  .avis-band .google-badge { border: 1px solid var(--bord); }
+  .avis .videos { margin-top: 0; }
+  @media (max-width: 900px) { .avis-band { padding: 52px 0; } }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero { padding: 32px 0 44px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+    .hero-copy { text-align: center; }
+    .hero .sub { margin-left: auto; margin-right: auto; }
+    .hero-bullets { text-align: left; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .hero-cta-desktop, .hero-note { display: none; }
+    .rows { grid-template-columns: 1fr; }
+    .numbered { grid-template-columns: 1fr 1fr; }
+    .row.reverse .photo { order: 0; }
+    .row .photo { min-height: 220px; }
+    .benefits .photo { min-height: 240px; }
+    .why { grid-template-columns: 1fr; }
+    .offer { gap: 0; }
+    .offer .photo { min-height: 220px; }
+    .offer-body { padding: 30px 22px; }
+    .sticky-cta { display: block; }
+    section.block { padding: 56px 0; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 16px; }
+    .numbered { grid-template-columns: 1fr; }
+    .form-inner { padding: 20px 16px 22px; }
+    .frow { grid-template-columns: 1fr; gap: 0; }
+    .hero-bullets { display: none; }
+    header.site .wrap { height: 60px; }
+    header.site .btn-sm { padding: 8px 14px; font-size: 0.8rem; }
+    .logo { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">✅ Étude gratuite et sans engagement · Rappel sous 48 h</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1><span class="h1-top">Propriétaires romands :</span>Découvrez <span class="accent">toutes les économies</span> que vous pouvez faire en installant des <span class="accent">panneaux solaires</span>, avant la fin de la déduction fiscale fédérale en 2029.</h1>
+      <p class="chips">Subventions · Impôts · Facture d'électricité · Autonomie énergétique</p>
+      <p class="sub">Répondez à 5 questions sur votre maison. Un conseiller calcule gratuitement vos économies sur chaque poste et vous rappelle sous 48 h.</p>
+      <div class="google-line"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="stars">★★★★★</span>4,8/5 <span class="muted">· 302 avis Google</span></div>
+      <a href="#form-optin" class="btn hero-cta-desktop">Commencer mon étude</a>
+      <p class="hero-note">Réservé aux propriétaires de maison en Suisse Romande.</p>
+    </div>
+
+    <div class="form-col">
+    <div class="form-box" id="form-optin">
+      <div class="offre-bar">
+        <span class="ico">🔋</span>
+        <span><strong>Système de secours offert</strong> aux 40 premiers propriétaires qui installent d'ici le 31 décembre.<span class="countdown" id="countdown"></span></span>
+      </div>
+
+      <div class="form-inner" id="quiz">
+
+        <div class="progress-wrap" id="progress-wrap">
+          <div class="progress-label">
+            <span id="progress-text">Question 1 sur 5</span>
+            <span>⏱ 1 min</span>
+          </div>
+          <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="step active" data-step="1" data-key="logement">
+          <h2>Êtes-vous propriétaire de votre maison ?</h2>
+          <p class="hint">Nos études sont réservées aux propriétaires de maisons.</p>
+          <div class="options">
+            <button class="opt" data-value="Maison individuelle"><span class="e">🏡</span><span class="label">Oui, maison individuelle</span></button>
+            <button class="opt" data-value="Maison mitoyenne / jumelée"><span class="e">🏘️</span><span class="label">Oui, maison mitoyenne ou jumelée</span></button>
+            <button class="opt" data-value="Non proprietaire" data-stop="locataire"><span class="e">🏢</span><span class="label">Non, locataire ou appartement</span></button>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="step" data-step="2" data-key="canton">
+          <h2>Dans quel canton se trouve votre maison ?</h2>
+          <p class="hint">Les subventions varient d'un canton à l'autre.</p>
+          <div class="options grid">
+            <button class="opt" data-value="Vaud">Vaud</button>
+            <button class="opt" data-value="Genève">Genève</button>
+            <button class="opt" data-value="Valais">Valais</button>
+            <button class="opt" data-value="Fribourg">Fribourg</button>
+            <button class="opt" data-value="Neuchâtel">Neuchâtel</button>
+            <button class="opt" data-value="Jura">Jura</button>
+            <button class="opt" data-value="Jura bernois">Jura bernois</button>
+            <button class="opt" data-value="Autre canton" data-stop="canton">Autre canton</button>
+          </div>
+          <button class="back">← Retour</button>
+        </div>
+
+        <!-- Q3 -->
+        <div class="step" data-step="3" data-key="facture">
+          <h2>Combien payez-vous d'électricité par mois ?</h2>
+          <p class="hint">Une estimation suffit.</p>
+          <div class="options">
+            <button class="opt" data-value="Moins de 100 CHF"><span class="e">⚡</span><span class="label">Moins de 100 CHF</span></button>
+            <button class="opt" data-value="100 à 200 CHF"><span class="e">⚡</span><span class="label">100 à 200 CHF</span></button>
+            <button class="opt" data-value="200 à 300 CHF"><span class="e">⚡</span><span class="label">200 à 300 CHF</span></button>
+            <button class="opt" data-value="Plus de 300 CHF"><span class="e">⚡</span><span class="label">Plus de 300 CHF</span></button>
+            <button class="opt" data-value="Je ne sais pas"><span class="e">🤷</span><span class="label">Je ne sais pas</span></button>
+          </div>
+          <button class="back">← Retour</button>
+        </div>
+
+        <!-- Q4 -->
+        <div class="step" data-step="4" data-key="projet">
+          <h2>Où en êtes-vous dans votre projet ?</h2>
+          <p class="hint">Aucune mauvaise réponse.</p>
+          <div class="options">
+            <button class="opt" data-value="A deja recu des devis"><span class="e">📄</span><span class="label">J'ai déjà reçu un ou plusieurs devis</span></button>
+            <button class="opt" data-value="Veut installer dans les 3 mois"><span class="e">🚀</span><span class="label">Je veux installer dans les 3 mois</span></button>
+            <button class="opt" data-value="Projet dans l'annee"><span class="e">📅</span><span class="label">Je veux installer dans l'année</span></button>
+            <button class="opt" data-value="Se renseigne"><span class="e">🔎</span><span class="label">Je me renseigne pour l'instant</span></button>
+          </div>
+          <button class="back">← Retour</button>
+        </div>
+
+        <!-- Q5 -->
+        <div class="step" data-step="5" data-key="interet">
+          <h2>Qu'est-ce qui vous intéresse ?</h2>
+          <p class="hint">Votre conseiller préparera l'étude en conséquence.</p>
+          <div class="options">
+            <button class="opt" data-value="Panneaux solaires"><span class="e">☀️</span><span class="label">Panneaux solaires</span></button>
+            <button class="opt" data-value="Panneaux solaires + PAC"><span class="e">☀️</span><span class="label">Panneaux solaires + pompe à chaleur</span></button>
+            <button class="opt" data-value="PAC"><span class="e">🌡️</span><span class="label">Pompe à chaleur</span></button>
+            <button class="opt" data-value="Panneaux + clim + PAC"><span class="e">❄️</span><span class="label">Panneaux solaires + climatisation + pompe à chaleur</span></button>
+          </div>
+          <button class="back">← Retour</button>
+        </div>
+
+        <!-- Coordonnées -->
+        <div class="step" data-step="6">
+          <h2>Où pouvons-nous vous joindre ?</h2>
+          <div class="good-news">🎉 <strong>Bonne nouvelle :</strong> votre maison peut bénéficier d'une étude personnalisée gratuite.</div>
+
+          <div class="frow">
+            <input type="text" id="prenom" placeholder="Prénom *" autocomplete="given-name">
+            <input type="text" id="nom" placeholder="Nom *" autocomplete="family-name">
+          </div>
+          <input type="email" id="email" placeholder="Email *" autocomplete="email">
+          <div class="frow">
+            <input type="tel" id="tel" placeholder="Téléphone *" autocomplete="tel">
+            <input type="text" id="npa" placeholder="NPA de la maison *" inputmode="numeric" maxlength="4" autocomplete="postal-code">
+          </div>
+
+          <!-- Honeypot anti-bot -->
+          <input type="text" id="website" name="website" style="position:absolute; left:-9999px; opacity:0;" tabindex="-1" autocomplete="off">
+
+          <button class="btn btn-optin" id="btn-submit">Recevoir mon étude gratuite →</button>
+
+          <div class="form-reassure">
+            <span>✓ 100 % gratuit</span>
+            <span>✓ Sans engagement</span>
+            <span>✓ Rappel sous 48 h</span>
+          </div>
+
+          <p class="form-legal">
+            En transmettant vos coordonnées, vous acceptez d'être contacté par un conseiller au sujet de votre projet solaire, pour vous proposer une étude et un devis gratuits. Vos données sont confidentielles et ne seront jamais revendues.<br>
+            <a href="politique-de-confidentialite.html">Politique de confidentialité</a>
+          </p>
+          <button class="back">← Retour</button>
+        </div>
+
+        <!-- Hors cible -->
+        <div class="step" data-step="stop">
+          <div class="stop-box">
+            <div class="big">🙏</div>
+            <p id="stop-message"></p>
+          </div>
+          <button class="back" id="stop-back">← Modifier ma réponse</button>
+        </div>
+
+      </div>
+    </div>
+      <div class="form-certifs">
+        <span><span class="badge">✓</span>Certifiés ESTI</span>
+        <span><span class="badge">✓</span>Affiliés Swissolar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVIS GOOGLE ================= -->
+<section class="avis-band">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="kicker">Avis clients</span>
+      <h2>Ils ont fait le choix du solaire. Voici ce qu'ils en disent.</h2>
+      <div class="google-badge"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="stars">★★★★★</span> 4,8/5 · 302 avis vérifiés</div>
+    </div>
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="stars">★★★★★</div>
+        <p>« Excellente expérience client. Merci à Rayan ZGHAB pour son accompagnement. De la visite technique à la concrétisation de notre projet, tout était parfait ! »</p>
+        <div class="auteur">Emma C.</div>
+        <div class="quand">il y a 3 mois</div>
+      </div>
+      <div class="avis-card">
+        <div class="stars">★★★★★</div>
+        <p>« […] s'occupe vraiment de tout du début à la fin. Très performant et arrangeant. Je ne peux que les recommander ! »</p>
+        <div class="auteur">Monique T.</div>
+        <div class="quand">il y a 4 mois</div>
+      </div>
+      <div class="avis-card">
+        <div class="stars">★★★★★</div>
+        <p>« De A à Z, tout était parfait. Conseils patients, pose professionnelle, raccordement le lendemain. Pour moi c'est un 10 sur 10. Bravo ! »</p>
+        <div class="auteur">Rose-Marie C.</div>
+        <div class="quand">il y a 7 mois</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= LE PIÈGE ================= -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-title">
+      <h2>Le devis le moins cher coûte souvent le plus cher</h2>
+      <p>La plupart des propriétaires choisissent leur installateur sur le prix, sans savoir ce qui se cache derrière.</p>
+    </div>
+    <span class="kicker" style="text-align:center; margin:-16px 0 24px;">Les 3 pièges les plus courants</span>
+
+    <div class="rows">
+      <div class="row">
+        <div>
+          <div class="pic">⏳</div>
+          <h3>Des délais qui explosent</h3>
+          <p class="lead">Le chantier promis pour le printemps… finit en automne.</p>
+          <p>Pendant ce temps, vous continuez à payer l'électricité plein tarif et les subventions risquent d'évoluer.</p>
+        </div>
+      </div>
+
+      <div class="row reverse">
+        <div>
+          <div class="pic">🛡️</div>
+          <h3>Des garanties qui ne couvrent plus rien</h3>
+          <p class="lead">Et des entreprises qui disparaissent.</p>
+          <p>Une garantie ne vaut que si l'entreprise est encore là pour l'honorer. Après un an, beaucoup de propriétaires se retrouvent seuls face à une panne.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <div class="pic">📐</div>
+          <h3>Trop de panneaux sur le toit</h3>
+          <p class="lead">Plus de panneaux, ce n'est pas plus d'économies.</p>
+          <p>Une installation surdimensionnée coûte plus cher sans forcément vous rapporter plus. La bonne taille dépend de votre consommation réelle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANDEAU CTA ================= -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Vous comparez déjà plusieurs devis ?</h2>
+    <p>Deux devis presque identiques peuvent cacher plusieurs milliers de francs d'écart sur 30 ans.</p>
+    <a href="#form-optin" class="btn btn-white">Demander le nôtre</a>
+  </div>
+</section>
+
+<!-- ================= L'ÉTUDE ================= -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="kicker">Votre étude gratuite</span>
+      <h2>Nous faisons l'inverse : on commence par votre maison</h2>
+    </div>
+    <div class="benefits">
+      <div class="numbered">
+        <div class="num-card">
+          <div class="num">01</div>
+          <h3>Votre toit</h3>
+          <p>Orientation, inclinaison, ombrage : on étudie la configuration de votre toiture.</p>
+        </div>
+        <div class="num-card">
+          <div class="num">02</div>
+          <h3>Votre consommation</h3>
+          <p>On analyse votre utilisation pour dimensionner l'installation au plus juste.</p>
+        </div>
+        <div class="num-card">
+          <div class="num">03</div>
+          <h3>Vos subventions</h3>
+          <p>Le montant exact des aides auxquelles vous avez droit dans votre canton.</p>
+        </div>
+        <div class="num-card">
+          <div class="num">04</div>
+          <h3>Vos économies d'impôts</h3>
+          <p>La déduction fiscale disparaît au niveau fédéral à partir de 2029. On calcule ce qu'elle vous rapporte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POURQUOI NOUS ================= -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-title">
+      <span class="kicker">Notre approche</span>
+      <h2>Un conseil honnête avant tout</h2>
+    </div>
+    <div class="why">
+      <div class="why-card">
+        <div class="ico">📍</div>
+        <h3>Experts en Suisse Romande</h3>
+        <p>Nous connaissons les règles et les aides de chaque canton romand.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico">🛠️</div>
+        <h3>Installation clé en main</h3>
+        <p>Étude, démarches, pose et suivi : un seul interlocuteur du début à la fin.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico">🤝</div>
+        <h3>Sans pression</h3>
+        <p>On vous conseille la bonne installation. Vous comparez, vous décidez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TÉMOIGNAGES VIDÉO ================= -->
+<section class="avis">
+  <div class="wrap">
+    <div class="section-title" style="margin-bottom:32px;">
+      <span class="kicker">Témoignages vidéo</span>
+      <h2>Ils en parlent mieux que nous</h2>
+    </div>
+    <div class="videos">
+      <div class="video"><iframe src="https://www.youtube.com/embed/uiHX9R9GBRU" allowfullscreen loading="lazy" title="Témoignage client 1"></iframe></div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/wc2fglwjE04" allowfullscreen loading="lazy" title="Témoignage client 2"></iframe></div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/Nmfw4iR9Inw" allowfullscreen loading="lazy" title="Témoignage client 3"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFRE ================= -->
+<section class="block alt">
+  <div class="wrap">
+    <div class="offer">
+      <div class="offer-body">
+        <span class="kicker">Offre jusqu'au 31 décembre</span>
+        <h2 class="h2">Un système de secours offert</h2>
+        <p>Pour les 40 premiers propriétaires qui font leur installation d'ici le 31 décembre. Il prend le relais en cas de coupure de courant.</p>
+        <ul>
+          <li>Étude personnalisée de votre maison, gratuite</li>
+          <li>Devis clair, sans engagement</li>
+          <li>Rappel par un conseiller sous 48 h</li>
+        </ul>
+        <a href="#form-optin" class="btn">Commencer mon étude →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="block">
+  <div class="wrap narrow">
+    <div class="section-title">
+      <span class="kicker">FAQ</span>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>💸 L'étude est-elle vraiment gratuite ?</summary>
+        <p>Oui, l'étude et le devis sont gratuits et sans engagement. Vous êtes libre de ne pas donner suite.</p>
+      </details>
+      <details>
+        <summary>⏱️ Combien de temps ça prend ?</summary>
+        <p>Une minute pour le questionnaire. Un conseiller vous rappelle ensuite sous 48 h pour un échange d'environ 15 minutes.</p>
+      </details>
+      <details>
+        <summary>📄 J'ai déjà un devis, ça vaut la peine ?</summary>
+        <p>Oui. Comparer vous permet de vérifier le dimensionnement, le matériel et les garanties avant de signer.</p>
+      </details>
+      <details>
+        <summary>🏠 Pourquoi seulement pour les propriétaires ?</summary>
+        <p>L'installation concerne votre toiture : seuls les propriétaires peuvent prendre cette décision et bénéficier des aides.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="final">
+  <div class="wrap narrow">
+    <h2>Avant de signer, demandez votre étude gratuite</h2>
+    <p>5 questions sur votre maison, et un conseiller vous rappelle sous 48 h.</p>
+    <a href="#form-optin" class="btn btn-white">Commencer mon étude</a>
+    <div class="badges"><span>✓ Gratuit</span><span>✓ Sans engagement</span><span>✓ Rappel sous 48 h</span></div>
+  </div>
+</section>
+
+<footer>
+  <a href="mentions-legales.html">Mentions légales</a> ·
+  <a href="politique-de-confidentialite.html">Politique de confidentialité</a>
+</footer>
+
+<div class="sticky-cta" id="sticky-cta">
+  <a href="#form-optin" class="btn">Mon étude gratuite →</a>
+</div>
+
+<script>
+  // ---------- CTA collant mobile ----------
+  (function () {
+    const sticky = document.getElementById('sticky-cta');
+    const form = document.getElementById('form-optin');
+    if (!('IntersectionObserver' in window)) return;
+    let formVisible = true;
+    new IntersectionObserver(entries => {
+      formVisible = entries[0].isIntersecting;
+      majSticky();
+    }).observe(form);
+    function majSticky() {
+      sticky.classList.toggle('show', window.scrollY > 400 && !formVisible);
+    }
+    window.addEventListener('scroll', majSticky, { passive: true });
+  })();
+
+  // ---------- Compte à rebours jusqu'au 31 décembre ----------
+  (function () {
+    const fin = new Date('2026-12-31T23:59:59+01:00');
+    const el = document.getElementById('countdown');
+    const jours = Math.ceil((fin - new Date()) / 86400000);
+    if (jours > 0) el.textContent = `Encore ${jours} jour${jours > 1 ? 's' : ''} pour en profiter.`;
+    else el.style.display = 'none';
+  })();
+
+  const ZAPIER_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/18792693/4bc4xc7/';
+  const REDIRECT_URL = 'merci.html'; // page de remerciement, à adapter
+  const TOTAL_QUESTIONS = 5;
+
+  const pageLoadTime = Date.now();
+  const reponses = {};
+  let etapeCourante = 1;
+  let etapeAvantStop = 1;
+
+  const REGEX_NOM = /^[A-Za-zÀ-ÿĀ-žʼ'’ -]{2,60}$/;
+  const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const EMAILS_JETABLES = ['mailinator.com', 'yopmail.com', 'guerrillamail.com', 'tempmail.com'];
+
+  const MESSAGES_STOP = {
+    locataire: "Merci pour votre intérêt ! Nos études solaires sont réservées aux propriétaires de maisons. Si vous êtes locataire, n'hésitez pas à transmettre cette page à votre propriétaire.",
+    canton: "Merci pour votre intérêt ! Nous intervenons uniquement en Suisse romande : Vaud, Genève, Valais, Fribourg, Neuchâtel, Jura et Jura bernois."
+  };
+
+  function afficherEtape(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.step[data-step="${n}"]`).classList.add('active');
+
+    const wrap = document.getElementById('progress-wrap');
+    if (n === 'stop') {
+      wrap.style.display = 'none';
+    } else {
+      wrap.style.display = '';
+      document.getElementById('progress-text').textContent =
+        n > TOTAL_QUESTIONS ? 'Dernière étape' : `Question ${n} sur ${TOTAL_QUESTIONS}`;
+      document.getElementById('progress-bar').style.width = ((n - 1) / TOTAL_QUESTIONS * 100) + '%';
+      etapeCourante = n;
+    }
+    const box = document.getElementById('form-optin');
+    if (box.getBoundingClientRect().top < 60) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.querySelectorAll('.step[data-key] .opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const step = btn.closest('.step');
+      step.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      reponses[step.dataset.key] = btn.dataset.value;
+
+      if (btn.dataset.stop) {
+        etapeAvantStop = parseInt(step.dataset.step, 10);
+        document.getElementById('stop-message').textContent = MESSAGES_STOP[btn.dataset.stop];
+        setTimeout(() => afficherEtape('stop'), 250);
+        return;
+      }
+      const n = parseInt(step.dataset.step, 10);
+      if (n === 1 && typeof fbq === 'function') fbq('trackCustom', 'QuizStart');
+      setTimeout(() => afficherEtape(n + 1), 250);
+    });
+  });
+
+  document.querySelectorAll('.back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.id === 'stop-back') afficherEtape(etapeAvantStop);
+      else afficherEtape(Math.max(1, etapeCourante - 1));
+    });
+  });
+
+  function nettoyerTelephone(tel) {
+    let t = tel.replace(/[\s.\-()\/]/g, '');
+    if (t.startsWith('+41')) t = '0' + t.slice(3);
+    else if (t.startsWith('0041')) t = '0' + t.slice(4);
+    return t;
+  }
+  function telephoneValide(t) {
+    return /^0\d{9}$/.test(t) || /^\d{9}$/.test(t);
+  }
+
+  document.getElementById('btn-submit').addEventListener('click', () => {
+    const prenom = document.getElementById('prenom').value.trim();
+    const nom = document.getElementById('nom').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const tel = nettoyerTelephone(document.getElementById('tel').value.trim());
+    const npa = document.getElementById('npa').value.trim();
+    const honeypot = document.getElementById('website').value;
+
+    if (honeypot) { console.log('Soumission bloquée (honeypot).'); return; }
+    if (Date.now() - pageLoadTime < 5000) { console.log('Soumission bloquée (trop rapide).'); return; }
+
+    if (!prenom || !nom || !email || !tel || !npa) { alert('Veuillez remplir tous les champs.'); return; }
+    if (!REGEX_NOM.test(prenom) || !REGEX_NOM.test(nom)) { alert('Merci de saisir un prénom et un nom valides (lettres uniquement).'); return; }
+    if (!REGEX_EMAIL.test(email)) { alert('Merci de saisir une adresse email valide.'); return; }
+    const domaine = email.split('@')[1]?.toLowerCase();
+    if (EMAILS_JETABLES.includes(domaine)) { alert('Merci de saisir une adresse email personnelle (pas une adresse jetable).'); return; }
+    if (!telephoneValide(tel)) {
+      alert('Merci de vérifier votre numéro de téléphone (10 chiffres, fixe ou mobile, ex : 021 123 45 67 ou 079 876 54 32).');
+      return;
+    }
+    const telFinal = tel.length === 9 ? '0' + tel : tel;
+    if (!/^[1-9]\d{3}$/.test(npa)) { alert('Merci de saisir un NPA suisse valide (4 chiffres, ex : 1110).'); return; }
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    const formData = new URLSearchParams();
+    formData.append('prenom', prenom);
+    formData.append('nom', nom);
+    formData.append('email', email);
+    formData.append('phone', telFinal);
+    formData.append('npa', npa);
+    formData.append('logement', reponses.logement || '');
+    formData.append('canton', reponses.canton || '');
+    formData.append('facture', reponses.facture || '');
+    formData.append('projet', reponses.projet || '');
+    formData.append('interet', reponses.interet || '');
+    formData.append('source', 'optin-2-questionnaire');
+    formData.append('page', window.location.href);
+    formData.append('date', new Date().toISOString());
+
+    fetch(ZAPIER_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
+    })
+    .catch(() => {})
+    .finally(() => {
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'optin-2-questionnaire' });
+      setTimeout(() => { window.location.href = REDIRECT_URL; }, 1000);
+    });
+  });
+</script>
+
+</body>
+</html>
