@@ -830,6 +830,21 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   let etapeCourante = 1;
   let etapeAvantStop = 1;
 
+  // ---------- Suivi des campagnes : récupère les paramètres de la pub Facebook ----------
+  // Lus dans l'URL (?utm_campaign=...&utm_content=...&ad_id=...) et gardés en mémoire
+  // pendant la visite, puis envoyés à Zapier avec le prospect.
+  const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ad_id', 'fbclid'];
+  const utm = {};
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    UTM_KEYS.forEach(k => {
+      let v = params.get(k);
+      if (v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+      else { try { v = sessionStorage.getItem(k); } catch (e) {} }
+      utm[k] = v || '';
+    });
+  })();
+
   const REGEX_NOM = /^[A-Za-zÀ-ÿĀ-žʼ'’ -]{2,60}$/;
   const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const EMAILS_JETABLES = ['mailinator.com', 'yopmail.com', 'guerrillamail.com', 'tempmail.com'];
@@ -935,6 +950,12 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     formData.append('source', 'optin-2-questionnaire');
     formData.append('page', window.location.href);
     formData.append('date', new Date().toISOString());
+
+    // Infos de campagne (vides si la personne n'arrive pas d'une pub)
+    UTM_KEYS.forEach(k => formData.append(k, utm[k]));
+    formData.append('campagne', utm.utm_campaign);   // nom de la campagne
+    formData.append('ensemble_pub', utm.utm_term);   // nom de l'ensemble de pubs
+    formData.append('pub', utm.utm_content);         // nom de la pub
 
     fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
