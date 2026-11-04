@@ -218,6 +218,9 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   .form-box input::placeholder { color: rgba(255,255,255,0.35); }
   .form-box input:focus { border-color: var(--or); }
 
+  /* Prénom + Nom côte à côte */
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
   .checkbox-proprio {
     display: flex;
     align-items: flex-start;
@@ -280,6 +283,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     .hero { padding: 16px 16px 0; }
     .form-box { padding: 20px 16px; margin: 0 12px 32px; }
     .points { padding: 0 16px; }
+    .frow { grid-template-columns: 1fr; gap: 0; }
   }
 </style>
 </head>
@@ -306,9 +310,12 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   <h2>Regarder la vidéo gratuitement</h2>
   <p class="form-sub">Entrez vos coordonnées, un expert vous envoie l'accès immédiatement.</p>
 
-  <input type="text" id="prenom" placeholder="Prénom *">
-  <input type="email" id="email" placeholder="Email *">
-  <input type="tel" id="tel" placeholder="Téléphone *">
+  <div class="frow">
+    <input type="text" id="prenom" placeholder="Prénom *" autocomplete="given-name">
+    <input type="text" id="nom" placeholder="Nom *" autocomplete="family-name">
+  </div>
+  <input type="email" id="email" placeholder="Email *" autocomplete="email">
+  <input type="tel" id="tel" placeholder="Téléphone *" autocomplete="tel">
 
   <!-- Honeypot anti-bot : champ invisible pour un humain, rempli automatiquement par les bots -->
   <input type="text" id="website" name="website" style="position:absolute; left:-9999px; opacity:0;" tabindex="-1" autocomplete="off">
@@ -356,10 +363,25 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   // Horodatage du chargement de la page, pour détecter les soumissions trop rapides (bots)
   const pageLoadTime = Date.now();
 
+  // ---------- Suivi des campagnes : récupère les paramètres de la pub Facebook ----------
+  // Lus dans l'URL (?utm_campaign=...&utm_content=...&ad_id=...) et gardés en mémoire
+  // pendant la visite, puis envoyés à Zapier avec le prospect.
+  const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ad_id', 'fbclid'];
+  const utm = {};
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    UTM_KEYS.forEach(k => {
+      let v = params.get(k);
+      if (v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+      else { try { v = sessionStorage.getItem(k); } catch (e) {} }
+      utm[k] = v || '';
+    });
+  })();
+
   // Regex de validation — volontairement permissifs sur la FORME (accents DE/FR/IT,
   // apostrophes courbes ’ ou droites ', tirets, espaces) pour ne jamais bloquer un
   // vrai nom composé. On bloque seulement le contenu clairement anormal (chiffres, etc.)
-  const REGEX_NOM = /^[A-Za-zÀ-ÿĀ-žʼ' -]{2,60}$/;
+  const REGEX_NOM = /^[A-Za-zÀ-ÿĀ-žʼ'’ -]{2,60}$/;
   const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   const EMAILS_JETABLES = ['mailinator.com', 'yopmail.com', 'guerrillamail.com', 'tempmail.com'];
@@ -374,7 +396,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   }
 
   function telephoneValide(t) {
-    // Suisse : 10 chiffres commençant par 0 (fixe ou mobile, tous préfixes : 021, 022, 024, 026, 027, 031, 078, 079, etc.)
+    // Suisse : 10 chiffres commençant par 0 (fixe ou mobile)
     if (/^0\d{9}$/.test(t)) return true;
     // 9 chiffres sans le 0 initial (oubli fréquent), qu'on complète automatiquement
     if (/^\d{9}$/.test(t)) return true;
@@ -383,6 +405,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 
   document.getElementById('btn-submit').addEventListener('click', () => {
     const prenom = document.getElementById('prenom').value.trim();
+    const nom    = document.getElementById('nom').value.trim();
     const email  = document.getElementById('email').value.trim();
     const telBrut = document.getElementById('tel').value.trim();
     const tel = nettoyerTelephone(telBrut);
@@ -403,14 +426,14 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     }
 
     // --- Champs obligatoires ---
-    if (!prenom || !email || !tel) {
+    if (!prenom || !nom || !email || !tel) {
       alert('Veuillez remplir tous les champs.');
       return;
     }
 
-    // --- Validation du prénom (lettres uniquement) ---
-    if (!REGEX_NOM.test(prenom)) {
-      alert('Merci de saisir un prénom valide (lettres uniquement).');
+    // --- Validation du prénom et du nom (lettres uniquement) ---
+    if (!REGEX_NOM.test(prenom) || !REGEX_NOM.test(nom)) {
+      alert('Merci de saisir un prénom et un nom valides (lettres uniquement).');
       return;
     }
 
@@ -444,11 +467,18 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 
     const formData = new URLSearchParams();
     formData.append('prenom', prenom);
+    formData.append('nom', nom);
     formData.append('email', email);
     formData.append('phone', telFinal);
     formData.append('source', 'optin-video');
     formData.append('page', window.location.href);
     formData.append('date', new Date().toISOString());
+
+    // Infos de campagne (vides si la personne n'arrive pas d'une pub)
+    UTM_KEYS.forEach(k => formData.append(k, utm[k]));
+    formData.append('campagne', utm.utm_campaign);   // nom de la campagne
+    formData.append('ensemble_pub', utm.utm_term);   // nom de l'ensemble de pubs
+    formData.append('pub', utm.utm_content);         // nom de la pub
 
     fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
@@ -457,7 +487,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     })
     .catch(() => {})
     .finally(() => {
-      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+      if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'optin-video' }); }
       // Laisse 1 seconde au pixel pour envoyer l'événement Lead à Meta avant de changer de page
       setTimeout(() => { window.location.href = 'index.html'; }, 1000);
     });
