@@ -414,7 +414,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   // ---------- Suivi des campagnes : récupère les paramètres de la pub Facebook ----------
   // Lus dans l'URL (?utm_campaign=...&utm_content=...&ad_id=...) et gardés en mémoire
   // pendant la visite, puis envoyés à Zapier avec le prospect.
-  const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'ad_id', 'fbclid'];
+  const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'campaign_id', 'adset_id', 'ad_id', 'placement', 'fbclid'];
   const utm = {};
   (function () {
     const params = new URLSearchParams(window.location.search);
@@ -529,6 +529,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     formData.append('email', email);
     formData.append('phone', telFinal);
     formData.append('delai_installation', delai);
+    formData.append('proprietaire', proprio ? 'Oui' : 'Non');
     formData.append('qualifie', qualifie ? 'oui' : 'non');
     formData.append('statut', qualifie ? 'Lead qualifié' : 'Disqualifié');
     formData.append('source', 'optin-video');
@@ -540,6 +541,22 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     formData.append('campagne', utm.utm_campaign);   // nom de la campagne
     formData.append('ensemble_pub', utm.utm_term);   // nom de l'ensemble de pubs
     formData.append('pub', utm.utm_content);         // nom de la pub
+
+    // Tag lisible d'un coup d'œil : "Facebook | Campagne | Ensemble | Pub"
+    // Si la personne n'arrive pas d'une pub avec paramètres : "Direct / inconnu"
+    // (ou "Facebook (sans paramètres)" si seul le fbclid est présent)
+    let tag;
+    if (utm.utm_source || utm.utm_campaign) {
+      const sourceLisible = /^(fb|facebook|ig|instagram|meta)$/i.test(utm.utm_source) ? 'Facebook' : (utm.utm_source || 'Inconnu');
+      tag = [sourceLisible, utm.utm_campaign, utm.utm_term, utm.utm_content]
+        .filter(Boolean)
+        .join(' | ');
+    } else if (utm.fbclid) {
+      tag = 'Facebook (sans paramètres)';
+    } else {
+      tag = 'Direct / inconnu';
+    }
+    formData.append('tag', tag);
 
     fetch(ZAPIER_WEBHOOK, {
       method: 'POST',
