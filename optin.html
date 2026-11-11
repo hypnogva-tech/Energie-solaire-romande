@@ -297,6 +297,11 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   }
 
   .btn-optin:hover { background: #e0b014; transform: translateY(-1px); }
+  .etape-presque { font-size: 0.95rem; font-weight: 700; color: var(--or); margin-bottom: 12px; text-align: center; }
+  .btn-retour {
+    display: block; margin: 12px auto 0; background: none; border: none;
+    color: rgba(255,255,255,0.5); font-size: 0.85rem; cursor: pointer; font-family: inherit;
+  }
   .btn-optin:disabled { opacity: 0.6; cursor: default; transform: none; }
 
   .form-legal {
@@ -349,31 +354,40 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   <h2>Regarder la vidéo gratuitement</h2>
   <p class="form-sub">Entrez vos coordonnées, un expert vous envoie l'accès immédiatement.</p>
 
-  <div class="frow">
-    <input type="text" id="prenom" placeholder="Prénom *" autocomplete="given-name">
-    <input type="text" id="nom" placeholder="Nom *" autocomplete="family-name">
+  <!-- Écran 1 : coordonnées -->
+  <div id="etape-coordonnees">
+    <div class="frow">
+      <input type="text" id="prenom" placeholder="Prénom *" autocomplete="given-name">
+      <input type="text" id="nom" placeholder="Nom *" autocomplete="family-name">
+    </div>
+    <input type="email" id="email" placeholder="Email *" autocomplete="email">
+    <input type="tel" id="tel" placeholder="Téléphone *" autocomplete="tel">
+
+    <!-- Honeypot anti-bot : champ invisible pour un humain, rempli automatiquement par les bots -->
+    <input type="text" id="website" name="website" style="position:absolute; left:-9999px; opacity:0;" tabindex="-1" autocomplete="off">
+
+    <label class="checkbox-proprio">
+      <input type="checkbox" id="proprio-check">
+      <span>Je confirme être propriétaire de ma maison.</span>
+    </label>
+
+    <button class="btn-optin" id="btn-continuer">Je veux voir la vidéo →</button>
   </div>
-  <input type="email" id="email" placeholder="Email *" autocomplete="email">
-  <input type="tel" id="tel" placeholder="Téléphone *" autocomplete="tel">
 
-  <!-- Honeypot anti-bot : champ invisible pour un humain, rempli automatiquement par les bots -->
-  <input type="text" id="website" name="website" style="position:absolute; left:-9999px; opacity:0;" tabindex="-1" autocomplete="off">
-
-  <fieldset class="question-delai">
-    <legend>Quand voulez-vous installer des panneaux solaires ? *</legend>
-    <label><input type="radio" name="delai" value="Le plus vite possible"> Le plus vite possible</label>
-    <label><input type="radio" name="delai" value="Dans 1 à 3 mois"> Dans 1 à 3 mois</label>
-    <label><input type="radio" name="delai" value="Dans 6 mois à 1 an"> Dans 6 mois à 1 an</label>
-    <label><input type="radio" name="delai" value="Dans plus d'un an"> Dans plus d'un an</label>
-    <label><input type="radio" name="delai" value="Pas d'installation prévue - juste la vidéo"> Je ne veux pas en installer, je veux juste regarder la vidéo</label>
-  </fieldset>
-
-  <label class="checkbox-proprio">
-    <input type="checkbox" id="proprio-check">
-    <span>Je confirme être propriétaire de ma maison.</span>
-  </label>
-
-  <button class="btn-optin" id="btn-submit">Je veux voir la vidéo →</button>
+  <!-- Écran 2 : délai (affiché après les coordonnées) -->
+  <div id="etape-delai" style="display:none;">
+    <p class="etape-presque">✅ Merci ! Dernière question avant la vidéo :</p>
+    <fieldset class="question-delai">
+      <legend>Quand voulez-vous installer des panneaux solaires ? *</legend>
+      <label><input type="radio" name="delai" value="Le plus vite possible"> Le plus vite possible</label>
+      <label><input type="radio" name="delai" value="Dans 1 à 3 mois"> Dans 1 à 3 mois</label>
+      <label><input type="radio" name="delai" value="Dans 6 mois à 1 an"> Dans 6 mois à 1 an</label>
+      <label><input type="radio" name="delai" value="Dans plus d'un an"> Dans plus d'un an</label>
+      <label><input type="radio" name="delai" value="Pas d'installation prévue - juste la vidéo"> Je ne veux pas en installer, je veux juste regarder la vidéo</label>
+    </fieldset>
+    <button class="btn-optin" id="btn-submit">Accéder à la vidéo →</button>
+    <button type="button" class="btn-retour" id="btn-retour">← Modifier mes coordonnées</button>
+  </div>
 
   <p class="form-legal">
     En transmettant vos coordonnées, vous autorisez La Maison des Énergies à vous contacter pour vous envoyer l'accès à la vidéo et vous proposer un bilan solaire gratuit. Vos données sont confidentielles et ne seront jamais revendues.<br>
@@ -451,73 +465,64 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     return false;
   }
 
-  document.getElementById('btn-submit').addEventListener('click', () => {
+  // ---------- Écran 1 : vérifie les coordonnées (renvoie null si un champ est invalide) ----------
+  function validerCoordonnees() {
     const prenom = document.getElementById('prenom').value.trim();
     const nom    = document.getElementById('nom').value.trim();
     const email  = document.getElementById('email').value.trim();
-    const telBrut = document.getElementById('tel').value.trim();
-    const tel = nettoyerTelephone(telBrut);
+    const tel    = nettoyerTelephone(document.getElementById('tel').value.trim());
     const proprio = document.getElementById('proprio-check')?.checked;
-    const delaiChoisi = document.querySelector('input[name="delai"]:checked');
-    const delai = delaiChoisi ? delaiChoisi.value : '';
-    // Disqualifiés : projet à plus d'un an, ou simple curiosité (pas d'installation prévue)
-    const DELAIS_DISQUALIFIES = ["Dans plus d'un an", "Pas d'installation prévue - juste la vidéo"];
-    const qualifie = !DELAIS_DISQUALIFIES.includes(delai);
-    const honeypot = document.getElementById('website').value;
 
     // --- Filtre anti-bot n°1 : honeypot rempli = bot, on rejette silencieusement ---
-    if (honeypot) {
-      console.log('Soumission bloquée (honeypot).');
-      return;
-    }
-
+    if (document.getElementById('website').value) { console.log('Soumission bloquée (honeypot).'); return null; }
     // --- Filtre anti-bot n°2 : soumission trop rapide (moins de 3 secondes) ---
-    const tempsEcoule = Date.now() - pageLoadTime;
-    if (tempsEcoule < 3000) {
-      console.log('Soumission bloquée (trop rapide).');
-      return;
-    }
+    if (Date.now() - pageLoadTime < 3000) { console.log('Soumission bloquée (trop rapide).'); return null; }
 
-    // --- Champs obligatoires ---
-    if (!prenom || !nom || !email || !tel) {
-      alert('Veuillez remplir tous les champs.');
-      return;
-    }
+    if (!prenom || !nom || !email || !tel) { alert('Veuillez remplir tous les champs.'); return null; }
+    if (!REGEX_NOM.test(prenom) || !REGEX_NOM.test(nom)) { alert('Merci de saisir un prénom et un nom valides (lettres uniquement).'); return null; }
+    if (!REGEX_EMAIL.test(email)) { alert('Merci de saisir une adresse email valide.'); return null; }
+    if (EMAILS_JETABLES.includes(email.split('@')[1]?.toLowerCase())) { alert('Merci de saisir une adresse email personnelle (pas une adresse jetable).'); return null; }
+    if (!telephoneValide(tel)) { alert('Merci de vérifier votre numéro de téléphone (10 chiffres, fixe ou mobile — ex: 021 802 35 36 ou 079 876 54 32).'); return null; }
+    if (!proprio) { alert('Veuillez confirmer que vous êtes propriétaire de votre logement.'); return null; }
 
-    // --- Validation du prénom et du nom (lettres uniquement) ---
-    if (!REGEX_NOM.test(prenom) || !REGEX_NOM.test(nom)) {
-      alert('Merci de saisir un prénom et un nom valides (lettres uniquement).');
-      return;
-    }
-
-    // --- Validation de l'email ---
-    if (!REGEX_EMAIL.test(email)) {
-      alert('Merci de saisir une adresse email valide.');
-      return;
-    }
-    const domaineEmail = email.split('@')[1]?.toLowerCase();
-    if (EMAILS_JETABLES.includes(domaineEmail)) {
-      alert('Merci de saisir une adresse email personnelle (pas une adresse jetable).');
-      return;
-    }
-
-    // --- Validation du téléphone (tolérante sur le format, fixe ou mobile) ---
-    if (!telephoneValide(tel)) {
-      alert('Merci de vérifier votre numéro de téléphone (10 chiffres, fixe ou mobile — ex: 021 802 35 36 ou 079 876 54 32).');
-      return;
-    }
     // Complète le 0 initial si la personne l'a oublié
     const telFinal = tel.length === 9 ? '0' + tel : tel;
+    return { prenom, nom, email, telFinal, proprio };
+  }
 
+  // Bouton de l'écran 1 : coordonnées valides → on affiche la question du délai
+  document.getElementById('btn-continuer').addEventListener('click', () => {
+    if (!validerCoordonnees()) return;
+    document.getElementById('etape-coordonnees').style.display = 'none';
+    document.getElementById('etape-delai').style.display = 'block';
+    document.getElementById('form-optin').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('btn-retour').addEventListener('click', () => {
+    document.getElementById('etape-delai').style.display = 'none';
+    document.getElementById('etape-coordonnees').style.display = 'block';
+  });
+
+  // Un clic sur une réponse envoie directement l'inscription
+  document.querySelectorAll('input[name="delai"]').forEach(r => r.addEventListener('change', () => {
+    document.getElementById('btn-submit').click();
+  }));
+
+  // ---------- Écran 2 : envoi ----------
+  document.getElementById('btn-submit').addEventListener('click', () => {
+    const coord = validerCoordonnees();
+    if (!coord) return;
+    const { prenom, nom, email, telFinal, proprio } = coord;
+
+    const delaiChoisi = document.querySelector('input[name="delai"]:checked');
+    const delai = delaiChoisi ? delaiChoisi.value : '';
     if (!delai) {
       alert('Merci d\'indiquer quand vous souhaitez installer des panneaux solaires.');
       return;
     }
-
-    if (!proprio) {
-      alert('Veuillez confirmer que vous êtes propriétaire de votre logement.');
-      return;
-    }
+    // Disqualifiés : projet à plus d'un an, ou simple curiosité (pas d'installation prévue)
+    const DELAIS_DISQUALIFIES = ["Dans plus d'un an", "Pas d'installation prévue - juste la vidéo"];
+    const qualifie = !DELAIS_DISQUALIFIES.includes(delai);
 
     const btn = document.getElementById('btn-submit');
     btn.disabled = true;
@@ -534,6 +539,7 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     formData.append('qualifie', qualifie ? 'oui' : 'non');
     formData.append('statut', qualifie ? 'Lead qualifié' : 'Disqualifié');
     formData.append('source', 'optin-video');
+    formData.append('variante', 'A-sombre-original');
     formData.append('page', window.location.href);
     // Date en heure suisse, au même format que le Google Sheet : "2026-06-06 19:01:24"
     let dateSuisse;
