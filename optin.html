@@ -529,12 +529,20 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     formData.append('email', email);
     formData.append('phone', telFinal);
     formData.append('delai_installation', delai);
-    formData.append('proprietaire', proprio ? 'Oui' : 'Non');
+    formData.append('projet', delai);   // même nom que l'autre landing page → colonne "Délai" du Sheet
+    formData.append('proprietaire', proprio ? 'Oui je suis propriétaire' : 'Non');
     formData.append('qualifie', qualifie ? 'oui' : 'non');
     formData.append('statut', qualifie ? 'Lead qualifié' : 'Disqualifié');
     formData.append('source', 'optin-video');
     formData.append('page', window.location.href);
-    formData.append('date', new Date().toISOString());
+    // Date en heure suisse, au même format que le Google Sheet : "2026-06-06 19:01:24"
+    let dateSuisse;
+    try {
+      dateSuisse = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Zurich' });
+    } catch (e) {
+      dateSuisse = new Date().toISOString();
+    }
+    formData.append('date', dateSuisse);
 
     // Infos de campagne (vides si la personne n'arrive pas d'une pub)
     UTM_KEYS.forEach(k => formData.append(k, utm[k]));
