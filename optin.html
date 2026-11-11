@@ -242,6 +242,45 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     line-height: 1.4;
   }
 
+  /* Question : délai d'installation */
+  .question-delai {
+    border: none;
+    margin: 4px 0 16px;
+  }
+  .question-delai legend {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--blanc);
+    margin-bottom: 10px;
+  }
+  .question-delai label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 11px 14px;
+    margin-bottom: 8px;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.88);
+    cursor: pointer;
+    transition: border 0.2s, background 0.2s;
+  }
+  .question-delai label:hover { border-color: rgba(245,197,24,0.5); }
+  .question-delai input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin: 0;
+    accent-color: var(--or);
+    cursor: pointer;
+  }
+  .question-delai label:has(input:checked) {
+    border-color: var(--or);
+    background: rgba(245,197,24,0.1);
+  }
+
   .btn-optin {
     width: 100%;
     background: var(--or);
@@ -319,6 +358,15 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
 
   <!-- Honeypot anti-bot : champ invisible pour un humain, rempli automatiquement par les bots -->
   <input type="text" id="website" name="website" style="position:absolute; left:-9999px; opacity:0;" tabindex="-1" autocomplete="off">
+
+  <fieldset class="question-delai">
+    <legend>Quand voulez-vous installer des panneaux solaires ? *</legend>
+    <label><input type="radio" name="delai" value="Le plus vite possible"> Le plus vite possible</label>
+    <label><input type="radio" name="delai" value="Dans 1 à 3 mois"> Dans 1 à 3 mois</label>
+    <label><input type="radio" name="delai" value="Dans 6 mois à 1 an"> Dans 6 mois à 1 an</label>
+    <label><input type="radio" name="delai" value="Dans plus d'un an"> Dans plus d'un an</label>
+    <label><input type="radio" name="delai" value="Pas d'installation prévue - juste la vidéo"> Je ne veux pas en installer, je veux juste regarder la vidéo</label>
+  </fieldset>
 
   <label class="checkbox-proprio">
     <input type="checkbox" id="proprio-check">
@@ -410,6 +458,11 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     const telBrut = document.getElementById('tel').value.trim();
     const tel = nettoyerTelephone(telBrut);
     const proprio = document.getElementById('proprio-check')?.checked;
+    const delaiChoisi = document.querySelector('input[name="delai"]:checked');
+    const delai = delaiChoisi ? delaiChoisi.value : '';
+    // Disqualifiés : projet à plus d'un an, ou simple curiosité (pas d'installation prévue)
+    const DELAIS_DISQUALIFIES = ["Dans plus d'un an", "Pas d'installation prévue - juste la vidéo"];
+    const qualifie = !DELAIS_DISQUALIFIES.includes(delai);
     const honeypot = document.getElementById('website').value;
 
     // --- Filtre anti-bot n°1 : honeypot rempli = bot, on rejette silencieusement ---
@@ -456,6 +509,11 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     // Complète le 0 initial si la personne l'a oublié
     const telFinal = tel.length === 9 ? '0' + tel : tel;
 
+    if (!delai) {
+      alert('Merci d\'indiquer quand vous souhaitez installer des panneaux solaires.');
+      return;
+    }
+
     if (!proprio) {
       alert('Veuillez confirmer que vous êtes propriétaire de votre logement.');
       return;
@@ -470,6 +528,9 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     formData.append('nom', nom);
     formData.append('email', email);
     formData.append('phone', telFinal);
+    formData.append('delai_installation', delai);
+    formData.append('qualifie', qualifie ? 'oui' : 'non');
+    formData.append('statut', qualifie ? 'Lead qualifié' : 'Disqualifié');
     formData.append('source', 'optin-video');
     formData.append('page', window.location.href);
     formData.append('date', new Date().toISOString());
@@ -487,7 +548,15 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
     })
     .catch(() => {})
     .finally(() => {
-      if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'optin-video' }); }
+      if (typeof fbq === 'function') {
+        if (qualifie) {
+          // Seuls les leads qualifiés comptent comme "Lead" : Meta optimise sur eux
+          fbq('track', 'Lead', { content_name: 'optin-video', delai_installation: delai });
+        } else {
+          // Disqualifiés : événement personnalisé, n'entraîne PAS l'optimisation sur les leads
+          fbq('trackCustom', 'LeadDisqualifie', { content_name: 'optin-video', delai_installation: delai });
+        }
+      }
       // Laisse 1 seconde au pixel pour envoyer l'événement Lead à Meta avant de changer de page
       setTimeout(() => { window.location.href = 'index.html'; }, 1000);
     });
