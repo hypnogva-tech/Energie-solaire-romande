@@ -378,12 +378,11 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
   <div id="etape-delai" style="display:none;">
     <p class="etape-presque">✅ Merci ! Dernière question avant la vidéo :</p>
     <fieldset class="question-delai">
-      <legend>Quand voulez-vous installer des panneaux solaires ? *</legend>
-      <label><input type="radio" name="delai" value="Le plus vite possible"> Le plus vite possible</label>
-      <label><input type="radio" name="delai" value="Dans 1 à 3 mois"> Dans 1 à 3 mois</label>
+      <legend>Où en êtes-vous dans votre projet solaire ? *</legend>
+      <label><input type="radio" name="delai" value="Le plus vite possible"> Je veux installer le plus vite possible</label>
+      <label><input type="radio" name="delai" value="Dans 1 à 3 mois"> Dans les 3 prochains mois</label>
       <label><input type="radio" name="delai" value="Dans 6 mois à 1 an"> Dans 6 mois à 1 an</label>
-      <label><input type="radio" name="delai" value="Dans plus d'un an"> Dans plus d'un an</label>
-      <label><input type="radio" name="delai" value="Pas d'installation prévue - juste la vidéo"> Je ne veux pas en installer, je veux juste regarder la vidéo</label>
+      <label><input type="radio" name="delai" value="Je me renseigne"> Je me renseigne, pas encore de date</label>
     </fieldset>
     <button class="btn-optin" id="btn-submit">Accéder à la vidéo →</button>
     <button type="button" class="btn-retour" id="btn-retour">← Modifier mes coordonnées</button>
@@ -520,8 +519,8 @@ src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"
       alert('Merci d\'indiquer quand vous souhaitez installer des panneaux solaires.');
       return;
     }
-    // Disqualifiés : projet à plus d'un an, ou simple curiosité (pas d'installation prévue)
-    const DELAIS_DISQUALIFIES = ["Dans plus d'un an", "Pas d'installation prévue - juste la vidéo"];
+    // Disqualifiés : simple prise de renseignements, sans date de projet
+    const DELAIS_DISQUALIFIES = ["Je me renseigne"];
     const qualifie = !DELAIS_DISQUALIFIES.includes(delai);
 
     const btn = document.getElementById('btn-submit');
