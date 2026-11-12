@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Énergie Solaire Romandie</title>
+<meta name="description" content="Vérifiez si vous êtes éligible à notre programme solaire en Suisse romande.">
+<meta property="og:title" content="Énergie Solaire Romandie">
+<meta property="og:description" content="Vérifiez si vous êtes éligible à notre programme solaire.">
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1646836646368027');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1646836646368027&ev=PageView&noscript=1"/></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#6cc24a; --green-dark:#4fa22f;
+    --blue:#2d6be0; --blue-dark:#2559c4;
+    --yellow:#e8cf45; --gold:#f2b51c;
+    --text:#111; --line:#cfd6e0; --input:#e9eaee; --err:#d32f2f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+
+  /* ===== Header ===== */
+  header{border-bottom:3px solid #d5dbe3;padding:30px 16px}
+  .head{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+  .logo{display:flex;align-items:flex-end;gap:6px;text-decoration:none}
+  .logo-word{font-family:Montserrat,sans-serif;font-weight:600;font-size:64px;line-height:.9;color:#3f9a2c;letter-spacing:-1px}
+  .logo-sub{font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:5px;color:#2a5ea8;margin-top:6px;display:block}
+  .cta-top{font-family:Montserrat,sans-serif;font-weight:700;font-size:28px;color:#fff;background:var(--green);border:0;border-radius:8px;padding:24px 46px;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.25);text-decoration:none}
+  .cta-top:hover{background:var(--green-dark)}
+
+  /* ===== Form ===== */
+  main{padding:100px 16px 70px}
+  .form-box{max-width:888px;margin:0 auto}
+  .panel{border:1px dashed var(--line);border-bottom:0;padding:60px 34px 70px;min-height:200px}
+  .step{display:none}
+  .step.active{display:block}
+  .q{font-size:20px;font-weight:400;margin-bottom:18px}
+  .radio{display:flex;align-items:center;gap:18px;font-size:20px;margin:14px 0;cursor:pointer}
+  .radio input{width:22px;height:22px;accent-color:var(--blue);margin:0;cursor:pointer}
+  .field-label{display:block;font-size:20px;margin-bottom:20px}
+  .text{width:100%;background:var(--input);border:0;border-radius:6px;padding:26px 32px;font:inherit;font-size:20px;color:#222}
+  .text::placeholder{color:#9aa0a8}
+  .text:focus{outline:2px solid var(--blue)}
+  .err{color:var(--err);font-size:20px;margin-top:22px;display:none}
+  .nav{display:flex;background:var(--blue);height:80px;border-radius:0 0 4px 4px;overflow:hidden}
+  .nav button{border:0;background:transparent;color:#fff;font:500 21px Roboto,sans-serif;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .prev{flex:1;justify-content:flex-start;padding-left:40px}
+  .prev[hidden]{display:flex;visibility:hidden}
+  .next{background:var(--blue-dark)!important;padding:0 40px}
+  .nav button:hover{filter:brightness(1.08)}
+  .thanks{text-align:center;font-size:22px;line-height:1.5}
+  .thanks b{display:block;font-family:Montserrat,sans-serif;font-size:28px;margin-bottom:10px}
+
+  /* ===== Badge ===== */
+  .badge{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:180px}
+  .badge-text{font-family:Montserrat,sans-serif;line-height:1}
+  .badge-text .l1{font-weight:900;font-size:46px}
+  .badge-text .l1 span{color:#f4d03f}
+  .badge-text .l2{font-family:"Courier New",monospace;font-weight:700;font-size:34px;border-top:3px solid #111;padding-top:6px;margin-top:4px;letter-spacing:1px}
+
+  /* ===== Yellow band ===== */
+  .band{background:var(--yellow);padding:80px 16px}
+  .stats{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
+  .stat h3{font-family:Montserrat,sans-serif;font-weight:900;font-size:40px;color:#111}
+  .stat .num{font-family:Montserrat,sans-serif;font-weight:900;font-size:68px;color:#fff;text-shadow:0 3px 6px rgba(0,0,0,.25);line-height:1.1}
+  .band small{display:block;text-align:center;margin-top:28px;font-size:13px;color:#4a4320}
+
+  /* ===== Testimonials ===== */
+  .reviews{max-width:1660px;margin:0 auto;padding:90px 40px 100px;display:grid;grid-template-columns:1fr 1fr;gap:50px 100px}
+  .review{background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.28);padding:10px 22px 26px}
+  .r-top{display:flex;gap:14px;align-items:center}
+  .avatar{width:134px;height:134px;border-radius:50%;flex:none;background:#dfe6ee;display:grid;place-items:center;font-family:Montserrat,sans-serif;font-weight:700;font-size:40px;color:#6b7a8c}
+  .r-name{font-family:Montserrat,sans-serif;font-weight:600;font-size:30px;letter-spacing:3px;color:#222}
+  .r-save{font-family:Montserrat,sans-serif;font-weight:600;font-size:22px;letter-spacing:2px;color:#333}
+  .stars{color:var(--gold);font-size:58px;letter-spacing:4px;line-height:1.1}
+  .r-text{font-family:Montserrat,sans-serif;font-size:21px;line-height:1.35;text-align:center;color:#333;margin-top:14px;letter-spacing:.5px}
+  .placeholder-note{grid-column:1/-1;text-align:center;font-size:14px;color:#a33;background:#fff4f4;border:1px dashed #e0a0a0;padding:10px;border-radius:6px}
+
+  .g-line{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:30px;font-family:Montserrat,sans-serif;font-weight:700;font-size:20px;color:#222;text-decoration:none}
+  .gs{color:var(--gold);letter-spacing:2px}
+  .sec-h{font-family:Montserrat,sans-serif;font-weight:900;font-size:40px;text-align:center;margin-bottom:40px}
+  .videos-sec{padding:90px 16px 30px}
+  .videos{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1000px;margin:0 auto}
+  .video{position:relative;aspect-ratio:9/16;background:#000;box-shadow:0 4px 14px rgba(0,0,0,.28);overflow:hidden}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  #avis-google{padding:70px 0 0}
+  .g-summary{display:flex;justify-content:center;align-items:center;gap:10px;font-family:Montserrat,sans-serif;font-size:24px;margin:-20px 0 0}
+  .r-save{display:flex;align-items:center;gap:8px}
+  .reviews{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:40px!important;max-width:1400px!important;padding:60px 24px 90px!important}
+  #avis-google .avatar{width:96px;height:96px;font-size:32px}
+  #avis-google .r-name{font-size:24px;letter-spacing:2px}
+  #avis-google .r-save{font-size:15px;letter-spacing:1px}
+  #avis-google .stars{font-size:42px}
+  #avis-google .r-text{font-size:18px}
+  @media (max-width:900px){.sec-h{font-size:28px}.videos{grid-template-columns:1fr;max-width:340px}.reviews{grid-template-columns:1fr!important}.g-line,.g-summary{font-size:17px}}
+  /* ===== Footer ===== */
+  footer{padding:40px 16px 60px;text-align:center;font-size:15px;color:#444;line-height:1.6}
+  footer p{max-width:900px;margin:0 auto 10px}
+  footer a{color:var(--blue)}
+
+  @media (max-width:900px){
+    .cta-top{font-size:20px;padding:16px 28px}
+    .logo-word{font-size:46px}
+    main{padding-top:50px}
+    .panel{padding:36px 20px 44px}
+    .q,.radio,.field-label,.text,.err{font-size:17px}
+    .text{padding:18px 20px}
+    .nav{height:64px}
+    .nav button{font-size:18px}
+    .prev{padding-left:20px}.next{padding:0 24px}
+    .badge{margin-top:80px}
+    .badge-text .l1{font-size:30px}.badge-text .l2{font-size:22px}
+    .badge svg{width:80px;height:90px}
+    .stats{grid-template-columns:1fr;gap:34px}
+    .stat h3{font-size:28px}.stat .num{font-size:50px}
+    .reviews{grid-template-columns:1fr;gap:34px;padding:50px 16px}
+    .avatar{width:84px;height:84px;font-size:28px}
+    .r-name{font-size:20px;letter-spacing:2px}.r-save{font-size:15px;letter-spacing:1px}
+    .stars{font-size:36px}.r-text{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head">
+    <a class="cta-top" href="#quiz">Calculer mes économies</a>
+  </div>
+</header>
+
+<main>
+  <form class="form-box" id="quiz" novalidate>
+    <div class="panel">
+
+      <div class="step" data-name="proprietaire" data-type="radio">
+        <div class="q">Êtes-vous propriétaire de votre logement ? *</div>
+        <label class="radio"><input type="radio" name="proprietaire" value="Oui">Oui</label>
+        <label class="radio"><input type="radio" name="proprietaire" value="Non">Non</label>
+      </div>
+
+      <div class="step" data-name="canton" data-type="radio">
+        <div class="q">Dans quel canton habitez-vous ? *</div>
+        <label class="radio"><input type="radio" name="canton" value="Vaud">Vaud</label>
+        <label class="radio"><input type="radio" name="canton" value="Genève">Genève</label>
+        <label class="radio"><input type="radio" name="canton" value="Valais">Valais</label>
+        <label class="radio"><input type="radio" name="canton" value="Fribourg">Fribourg</label>
+        <label class="radio"><input type="radio" name="canton" value="Neuchâtel">Neuchâtel</label>
+        <label class="radio"><input type="radio" name="canton" value="Jura / Jura bernois">Jura / Jura bernois</label>
+        <label class="radio"><input type="radio" name="canton" value="Aucun de ceux-ci">Aucun de ceux-ci</label>
+      </div>
+
+      <div class="step" data-name="facture" data-type="radio">
+        <div class="q">Quel est le montant moyen de votre facture d'électricité ? *</div>
+        <label class="radio"><input type="radio" name="facture" value="CHF 50-100">CHF 50 – 100</label>
+        <label class="radio"><input type="radio" name="facture" value="CHF 100-200">CHF 100 – 200</label>
+        <label class="radio"><input type="radio" name="facture" value="CHF 200-300">CHF 200 – 300</label>
+        <label class="radio"><input type="radio" name="facture" value="CHF 300+">CHF 300+ par mois</label>
+      </div>
+
+      <div class="step" data-name="financement" data-type="radio">
+        <div class="q">Comment envisagez-vous de financer votre installation ? *</div>
+        <label class="radio"><input type="radio" name="financement" value="Fonds propres">Fonds propres</label>
+        <label class="radio"><input type="radio" name="financement" value="Hypothèque">Hypothèque verte / augmentation hypothécaire</label>
+        <label class="radio"><input type="radio" name="financement" value="Leasing">Leasing ou paiement échelonné</label>
+        <label class="radio"><input type="radio" name="financement" value="Je ne sais pas">Je ne sais pas encore</label>
+      </div>
+
+      <div class="step" data-name="type_logement" data-type="radio">
+        <div class="q">Quel type de bien possédez-vous ? *</div>
+        <label class="radio"><input type="radio" name="type_logement" value="Villa individuelle">Villa individuelle</label>
+        <label class="radio"><input type="radio" name="type_logement" value="Villa mitoyenne">Villa mitoyenne</label>
+        <label class="radio"><input type="radio" name="type_logement" value="Immeuble">Immeuble</label>
+        <label class="radio"><input type="radio" name="type_logement" value="PPE">Appartement en PPE</label>
+        <label class="radio"><input type="radio" name="type_logement" value="Je ne sais pas">Je ne sais pas</label>
+      </div>
+
+      <div class="step" data-name="ensoleillement" data-type="radio">
+        <div class="q">Ensuite, quel est l'ensoleillement de votre toit ? *</div>
+        <label class="radio"><input type="radio" name="ensoleillement" value="Beaucoup de soleil">Beaucoup de soleil</label>
+        <label class="radio"><input type="radio" name="ensoleillement" value="Soleil et ombre">Un peu de soleil / un peu d'ombre</label>
+        <label class="radio"><input type="radio" name="ensoleillement" value="Peu de soleil">Peu de soleil</label>
+        <label class="radio"><input type="radio" name="ensoleillement" value="Je ne sais pas">Je ne sais pas</label>
+      </div>
+
+      <div class="step" data-name="adresse" data-type="text">
+        <label class="field-label" for="adresse">Adresse *</label>
+        <input class="text" id="adresse" name="adresse" placeholder="Adresse" autocomplete="street-address">
+        <div class="err">L'adresse est obligatoire</div>
+      </div>
+
+      <div class="step" data-name="npa" data-type="text" data-pattern="^\d{4}$">
+        <label class="field-label" for="npa">NPA *</label>
+        <input class="text" id="npa" name="npa" placeholder="NPA" inputmode="numeric" maxlength="4" autocomplete="postal-code">
+        <div class="err">Merci d'indiquer un NPA valide (4 chiffres)</div>
+      </div>
+
+      <div class="step" data-name="localite" data-type="text">
+        <label class="field-label" for="localite">Localité *</label>
+        <input class="text" id="localite" name="localite" placeholder="Localité" autocomplete="address-level2">
+        <div class="err">La localité est obligatoire</div>
+      </div>
+
+      <div class="step" data-name="nom" data-type="text">
+        <label class="field-label" for="nom">Nom complet *</label>
+        <input class="text" id="nom" name="nom" placeholder="Nom complet" autocomplete="name">
+        <div class="err">Le nom complet est obligatoire</div>
+      </div>
+
+      <div class="step" data-name="email" data-type="text" data-pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$">
+        <label class="field-label" for="email">E-mail *</label>
+        <input class="text" id="email" name="email" type="email" placeholder="E-mail" autocomplete="email">
+        <div class="err">Merci d'indiquer une adresse e-mail valide</div>
+      </div>
+
+      <div class="step" data-name="telephone" data-type="text" data-pattern="^[+\d][\d\s]{8,}$">
+        <label class="field-label" for="telephone">Quel est le meilleur numéro pour vous confirmer le rendez-vous ? *</label>
+        <input class="text" id="telephone" name="telephone" type="tel" placeholder="+41 79 123 45 67" autocomplete="tel">
+        <div class="err">Merci d'indiquer un numéro de téléphone valide</div>
+      </div>
+
+      <div class="step thanks" data-name="merci">
+        <b>Merci !</b>
+        Votre demande a bien été enregistrée.<br>Un conseiller de votre région vous contactera très prochainement.
+      </div>
+    </div>
+
+    <div class="nav" id="nav">
+      <button type="button" class="prev" id="prev">← PRÉC.</button>
+      <button type="button" class="next" id="next">SUIVANT →</button>
+    </div>
+  </form>
+
+  <div class="badge">
+    <svg width="110" height="130" viewBox="0 0 110 130" aria-hidden="true">
+      <path d="M55 6 100 22v40c0 32-20 54-45 64C30 116 10 94 10 62V22z" fill="none" stroke="#f4d03f" stroke-width="8"/>
+      <path d="M30 62l20 22 46-52" fill="none" stroke="#f4d03f" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="badge-text">
+      <div class="l1">Certifiés <span>ESTI</span></div>
+      <div class="l2">AFFILIÉS SWISSOLAR</div>
+    </div>
+  </div>
+  <a class="g-line" href="#avis-google"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.930-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.640l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="gs">★★★★★</span> 4,8/5 · 302 avis Google</a>
+</main>
+
+<!-- Chiffres indicatifs : à vérifier / ajuster avant publication -->
+<section class="band">
+  <div class="stats">
+    <div class="stat"><h3>Économies à vie</h3><div class="num" data-to="30000" data-prefix="CHF ">CHF 0</div></div>
+    <div class="stat"><h3>Subvention fédérale</h3><div class="num" data-to="3800" data-prefix="CHF ">CHF 0</div></div>
+    <div class="stat"><h3>Durée de vie</h3><div class="num" data-to="25" data-suffix="+ ans">0+ ans</div></div>
+  </div>
+  <small>* Exemple indicatif pour une villa avec une installation d'environ 10 kWc. Les montants réels dépendent de votre consommation, de votre toit, de votre gestionnaire de réseau et des règles fiscales de votre canton.</small>
+</section>
+
+<section class="videos-sec">
+  <h2 class="sec-h">Témoignages vidéo</h2>
+  <div class="videos">
+    <div class="video"><iframe src="https://www.youtube.com/embed/uiHX9R9GBRU" allowfullscreen loading="lazy" title="Témoignage client 1"></iframe></div>
+    <div class="video"><iframe src="https://www.youtube.com/embed/wc2fglwjE04" allowfullscreen loading="lazy" title="Témoignage client 2"></iframe></div>
+    <div class="video"><iframe src="https://www.youtube.com/embed/Nmfw4iR9Inw" allowfullscreen loading="lazy" title="Témoignage client 3"></iframe></div>
+  </div>
+</section>
+
+<section id="avis-google">
+  <h2 class="sec-h">Ce que disent nos clients</h2>
+  <div class="g-summary"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M34.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.230 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.34-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.34 1 12s.43 3.45 1.18 4.93l2.85-2.34.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="gs">★★★★★</span> <b>4,8/5</b> · 302 avis Google</div>
+  <div class="reviews">
+  <div class="review">
+    <div class="r-top"><div class="avatar">E.</div><div>
+      <div class="r-name">Emma C.</div><div class="r-save"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.230 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Avis Google · il y a 3 mois</div>
+      <div class="stars">★★★★★</div></div></div>
+    <p class="r-text">« Excellente expérience client. Merci à Rayan ZGHAB pour son accompagnement. De la visite technique à la concrétisation de notre projet, tout était parfait ! »</p>
+  </div>
+  <div class="review">
+    <div class="r-top"><div class="avatar">M.</div><div>
+      <div class="r-name">Monique T.</div><div class="r-save"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.230 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Avis Google · il y a 4 mois</div>
+      <div class="stars">★★★★★</div></div></div>
+    <p class="r-text">« […] s'occupe vraiment de tout du début à la fin. Très performant et arrangeant. Je ne peux que les recommander ! »</p>
+  </div>
+  <div class="review">
+    <div class="r-top"><div class="avatar">R.</div><div>
+      <div class="r-name">Rose-Marie C.</div><div class="r-save"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.230 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Avis Google · il y a 7 mois</div>
+      <div class="stars">★★★★★</div></div></div>
+    <p class="r-text">« De A à Z, tout était parfait. Conseils patients, pose professionnelle, raccordement le lendemain. Pour moi c'est un 10 sur 10. Bravo ! »</p>
+  </div>
+  </div>
+</section>
+
+<footer>
+  <p>En vous inscrivant ou en utilisant ce site, vous acceptez nos conditions générales. Veuillez également consulter nos autres politiques, comme notre <a href="https://lamaisondesenergies.ch/index.php/politique-de-confidentialite/" target="_blank" rel="noopener">politique de confidentialité</a>. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser ce site.</p>
+  <p><a href="https://lamaisondesenergies.ch/index.php/mentions-legales/" target="_blank" rel="noopener">Mentions légales</a> · <a href="https://lamaisondesenergies.ch/index.php/politique-de-confidentialite/" target="_blank" rel="noopener">Politique de confidentialité</a></p>
+</footer>
+
+<script>
+(function(){
+  const steps=[...document.querySelectorAll('.step')];
+  const prev=document.getElementById('prev'), next=document.getElementById('next'), nav=document.getElementById('nav');
+  const last=steps.length-1; let i=0; const data={};
+
+  function show(n){
+    steps.forEach((s,k)=>s.classList.toggle('active',k===n)); i=n;
+    prev.hidden = n===0;
+    next.textContent = n===last-1 ? 'ENVOYER →' : 'SUIVANT →';
+    nav.style.display = n===last ? 'none' : 'flex';
+  }
+  function valid(s){
+    const err=s.querySelector('.err');
+    if(s.dataset.type==='radio'){
+      const c=s.querySelector('input:checked');
+      if(!c){ s.querySelector('.q').style.color='var(--err)'; return false; }
+      s.querySelector('.q').style.color=''; data[s.dataset.name]=c.value; return true;
+    }
+    const v=s.querySelector('input').value.trim();
+    const ok = v.length>1 && (!s.dataset.pattern || new RegExp(s.dataset.pattern).test(v));
+    err.style.display = ok?'none':'block';
+    if(ok) data[s.dataset.name]=v;
+    return ok;
+  }
+  next.onclick=async()=>{
+    if(!valid(steps[i])) return;
+    if(i===last-1){
+      // TODO : collez ici l'URL de votre webhook (GoHighLevel, Zapier, Make…)
+      const WEBHOOK_URL='https://hooks.zapier.com/hooks/catch/18792693/4bc4xc7/';
+      const payload={...data,source:location.href,date:new Date().toISOString()};
+      payload.source='energie-solaire-romandie';
+      const utm=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content','ad_id','fbclid'].forEach(k=>payload[k]=utm.get(k)||'');
+      if(WEBHOOK_URL){ try{await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(payload).toString()});}catch(e){console.error(e);} }
+      if(typeof fbq==='function') fbq('track','Lead',{content_name:'energie-solaire-romandie'});
+      else console.log('Lead :',payload);
+    }
+    show(i+1);
+  };
+  prev.onclick=()=>show(Math.max(0,i-1));
+  document.querySelectorAll('.text').forEach(inp=>inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();next.click();}}));
+  document.getElementById('quiz').addEventListener('submit',e=>e.preventDefault());
+  show(0);
+
+  // Compteurs animés (comme les GIF de l'original)
+  const fmt=n=>Math.round(n).toLocaleString('de-CH').replace(/[’,]/g,"'");
+  const io=new IntersectionObserver(es=>es.forEach(en=>{
+    if(!en.isIntersecting) return; io.unobserve(en.target);
+    const el=en.target,to=+el.dataset.to,p=el.dataset.prefix||'',sx=el.dataset.suffix||'';const t0=performance.now();
+    (function tick(t){const k=Math.min(1,(t-t0)/1800);el.textContent=p+fmt(to*(1-Math.pow(1-k,3)))+sx;if(k<1)requestAnimationFrame(tick);})(t0);
+  }),{threshold:.4});
+  document.querySelectorAll('.num').forEach(n=>io.observe(n));
+})();
+</script>
+</body>
+</html>
